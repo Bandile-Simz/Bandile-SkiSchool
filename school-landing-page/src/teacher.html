@@ -1,0 +1,2953 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+  <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>Teacher Dashboard</title>
+  <style>
+ /* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #007BFF;
+  padding-top: 20px;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.sidebar a {
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #E0E0E0;
+  display: block;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar a:hover {
+  color: #ffffff;
+  background-color: #0056b3;
+  border-radius: 5px;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 260px;
+  padding: 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+/* Profile Header Styles */
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #28A745;
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.profile-header img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.profile-actions button {
+  background-color: #325bed;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-actions button:hover {
+  background-color: #1bdf35;
+}
+
+
+
+.section h2 {
+  color: #333;
+}
+
+.section h3 {
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #007BFF;
+}
+
+.section p {
+  color: #666;
+}
+
+/* Lists */
+#classes-list li,
+#student-list li {
+  background-color: #f9f9f9;
+}
+
+#students ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#students li {
+  margin: 0;
+}
+
+/* Form and Button Styles */
+input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button, .enroll-button, .addStudent, .removeStudent, .delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.enroll-button {
+  background-color: #28A745;
+  color: #fff;
+}
+
+.enroll-button:hover {
+  background-color: #218838;
+}
+
+.addStudent {
+  background-color: #286ca7;
+}
+
+.addStudent:hover {
+  background-color: #37f05f;
+}
+
+.removeStudent {
+  background-color: #286ca7;
+}
+
+.removeStudent:hover {
+  background-color: #f13b0e;
+}
+
+.delete-button {
+  background-color: #dc3545;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+th {
+  font-weight: bold;
+}
+
+td {
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 210px;
+  }
+
+  table {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 180px;
+  }
+
+  .main-content {
+    margin-left: 190px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+/* Flex Container Styles */
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style-type: none;
+  margin: 20px 0;
+}
+
+/* Flex Item Styles */
+#class-items li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#class-items li h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+#class-items li p {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+#class-items li button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#class-items li button:hover {
+  background-color: #0056b3;
+}
+
+/* Container for buttons side by side */
+.class-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-close-button:hover {
+  color: #007bff;
+}
+
+.modal-title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Filter container styles */
+.filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-label {
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+.grade-filter {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Table Styles */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+}
+
+.student-table th,
+.student-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.student-table th {
+  background-color: #e0e0e0;
+  font-weight: bold;
+  color: #333;
+}
+
+.student-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.student-table tr:hover {
+  background-color: #eaeaea;
+}
+/* Modal styles */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Section Styles */
+.section {
+  display: none; /* Hide all sections by default */
+}
+
+/* Display the active section */
+.section.active {
+  display: block;
+}
+
+/* Optional: Add transitions for smooth visibility changes */
+.section {
+  transition: opacity 0.3s ease-in-out; /* Smooth fade effect */
+  opacity: 0;
+}
+
+.section.active {
+  opacity: 1;
+}
+
+  /* General styling for the form */
+  #sendNotificationForm {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+      background-color: #f7f7f7;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+  }
+
+  #sendNotificationForm label {
+      font-weight: bold;
+      color: #333;
+  }
+
+  /* Style for the select dropdown */
+  #classSelect {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background-color: #fff;
+      transition: border-color 0.3s ease;
+  }
+
+  #classSelect:focus {
+      border-color: #007bff;
+  }
+
+  /* Style for the textarea */
+  #notificationMessage {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.3s ease;
+  }
+
+  #notificationMessage:focus {
+      border-color: #007bff;
+  }
+
+  /* Style for the submit button */
+  #submitNotificationBtn {
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+
+  #submitNotificationBtn:hover {
+      background-color: #0056b3;
+  }
+
+  /* Modal styling */
+  .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      animation: fadeIn 0.3s;
+  }
+
+  .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+
+  .close:hover, .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*----------------spinning loading ticker-------------------------*/
+#loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #555; /* Change the color as needed */
+}
+
+.spinner {
+    width: 24px;  /* Size of the spinner */
+    height: 24px;
+    border: 4px solid #f3f3f3; /* Light background */
+    border-top: 4px solid #3498db; /* Blue color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Animation for spinning */
+    margin-right: 10px; /* Space between spinner and text */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+#classFilter, #applyFilter {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.students-in-classes {
+    margin-top: 20px;
+    font-size: 16px;
+}
+.trash-icon {
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+    cursor: pointer;
+}
+.class-tooltip {
+    display: none; /* Hidden by default */
+    position: absolute; /* Ensure it can be positioned */
+    background-color: #f9f9f9; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    padding: 5px; /* Padding */
+    z-index: 1000; /* On top */
+}
+#notificationsContainer {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 20px;
+}
+
+#notificationsList {
+    margin-top: 15px;
+}
+
+.notification {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between message and icon */
+    align-items: center; /* Center align the items vertically */
+    background-color: #e7f3fe; /* Light blue background */
+    border: 1px solid #bee1fd; /* Light border */
+    color: #31708f; /* Text color */
+    padding: 10px; /* Padding around notification */
+    margin: 10px 0; /* Space between notifications */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.notification:hover {
+    background-color: #d4edda; /* Change background on hover */
+}
+
+.notification .expiration {
+    color: #d9534f; /* Change color to indicate urgency */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-left: 10px; /* Space between message and expiration */
+    font-size: 0.9em; /* Slightly smaller text */
+}
+
+.notification span {
+    margin-left: auto; /* Push the icon to the right */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.notification span:hover {
+    color: red; /* Change color on hover for visual feedback */
+}
+
+#notificationModal {
+    position: fixed; /* Center modal on screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering effect */
+    padding: 20px; /* Padding inside modal */
+    border: 1px solid #ccc; /* Border for modal */
+    border-radius: 8px; /* Rounded corners */
+    background-color: white; /* White background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+textarea {
+    width: 100%; /* Full width for textarea */
+    height: 100px; /* Fixed height */
+    margin-top: 5px; /* Space above textarea */
+    margin-bottom: 15px; /* Space below textarea */
+}
+
+.notification-counter {
+    font-size: 1.5em; /* Larger font size for visibility */
+    color: red; /* Red color for emphasis */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 10px; /* Space below the counter */
+}
+.student-image {
+    width: 60px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure the image is resized while maintaining aspect ratio */
+    border-radius: 50%; /* Optional: make the image circular */
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#attendance {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#classButtonContainer {
+    margin-bottom: 20px;
+}
+
+#classButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between buttons */
+}
+
+#classButtons button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#classButtons button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between list items */
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745; /* Default button color */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Darker shade on hover */
+}
+
+#attendanceTableDiv, #attendanceRecordsDiv, #attendanceReportDiv {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+.loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it appears on top of other content */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px; /* Spinner size */
+    height: 50px; /* Spinner size */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#assignmentsList {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        #assignmentsList li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        #assignmentsList li:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .assignment-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .assignment-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+#loadingSpinner {
+    position: fixed; /* Use fixed to keep it in place when scrolling */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the spinner */
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    border: 1px solid #ccc; /* Border for the spinner */
+    padding: 20px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    z-index: 1000; /* Ensure it appears above other content */
+    font-size: 18px; /* Increase font size for visibility */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+#classSelectMarks {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    max-width: 600px; /* Set a max width for the list */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#classSelectMarks li {
+    padding: 15px; /* Padding for each list item */
+    border-bottom: 1px solid #e0e0e0; /* Divider between items */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth background color change */
+}
+
+#classSelectMarks li:hover {
+    background-color: #e0f7fa; /* Light blue background on hover */
+}
+
+#classSelectMarks li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+#classButtonsForAssighment {
+    display: flex;             /* Use flexbox */
+    flex-wrap: wrap;          /* Allow items to wrap onto the next line */
+    gap: 10px;                /* Space between buttons */
+    justify-content: flex-start; /* Align items to the start (you can change this as needed) */
+    margin: 20px 0;          /* Optional: Add some margin around the container */
+}
+
+/* Optional: Style for each button container */
+.class-button {
+    display: flex;            /* Use flexbox for button and tooltip */
+    position: relative;       /* Position relative for the tooltip */
+}
+
+/* Optional: Style for buttons */
+.class-button button {
+    padding: 10px 15px;      /* Padding inside buttons */
+    font-size: 16px;         /* Font size */
+    cursor: pointer;         /* Change cursor on hover */
+    border: none;            /* Remove border */
+    background-color: #007bff; /* Button background color */
+    color: white;            /* Text color */
+    border-radius: 5px;     /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Optional: Change button color on hover */
+.class-button button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.class-tooltip {
+    display: none;            /* Hidden by default */
+    position: absolute;       /* Absolute positioning */
+    z-index: 1000;           /* On top */
+    background-color: #f9f9f9; /* Tooltip background */
+    border: 1px solid #ccc;   /* Tooltip border */
+    padding: 5px;            /* Tooltip padding */
+    white-space: nowrap;      /* Prevent tooltip text from wrapping */
+    top: 100%;                /* Position it below the button */
+    left: 50%;                /* Center it horizontally */
+    transform: translateX(-50%); /* Offset it to perfectly center */
+    margin-top: 5px;         /* Space between the button and tooltip */
+    opacity: 0;               /* Start with hidden opacity */
+    transition: opacity 0.2s; /* Smooth transition for appearing */
+}
+
+/* Show the tooltip on hover */
+.class-button:hover .class-tooltip {
+    display: block;           /* Display the tooltip */
+    opacity: 1;              /* Make it fully visible */
+}
+
+
+  </style>
+  <!-- Add Firebase SDK -->
+  <!-- Include jQuery in your HTML file -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Teacher Panel</h2>
+    <a href="#" onclick="showSection('overview')">Dashboard</a>
+    <a href="#" onclick="showSection('my-classes')">My Classes</a>
+    <a href="#" onclick="showSection('students12')">Students</a>
+    <a href="#" onclick="showSection('attendance')">Attendance</a>
+    <a href="#" onclick="showSection('assignments')">Assignments</a>
+    <a href="#" onclick="showSection('grades')">Grades</a>
+    <a href="#" onclick="showSection('notifications')">Notifications</a>
+  </div>
+
+  <div class="main-content">
+    <div class="profile-header">
+      <img id="profile-picture" src="" alt="Profile Picture">
+      <div class="profile-info">
+        <h2 id="teacher-name"></h2>
+        <p id="teacher-subject"></p>
+        <p id="teacher-email"></p>
+        <p id="teacher-description"></p>
+      </div>
+      <div class="profile-actions">
+        <button id="edit-profile">Edit Profile</button>
+        <button id="logout-button">Logout</button>
+      </div>
+    </div>
+
+<!-- Edit Profile Modal -->
+<div id="edit-profile-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h3>Edit Profile</h3>
+      
+      <label for="edit-image">Profile Picture:</label>
+      <input type="file" id="edit-image" accept="image/*">
+      
+      <label for="edit-name">Name:</label>
+      <input type="text" id="edit-name">
+      
+      <label for="edit-subject">Subject:</label>
+      <input type="text" id="edit-subject">
+      
+      <label for="edit-description">Description:</label>
+      <textarea id="edit-description"></textarea>
+      
+      <button id="save-profile">Save Changes</button>
+      <button id="cancel-edit">Cancel</button>
+      <div id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        Saving changes...
+    </div>
+    
+
+  </div>
+</div>
+
+
+
+    
+    
+    <div id="overview" class="section active">
+      <h2>Dashboard</h2>
+      <p>Welcome to the teacher dashboard! Here you can manage your classes, students, and assignments.</p>
+      <div><i class="bi bi-envelope-paper"></i> Applications: <span id="ClasseCount">0</span></div>
+      <div><i class="bi bi-file-person-fill"></i> Total Students: <span id="Student-Count">0</span></div>
+      <div><i class="bi bi-person-heart"></i> Teachers: <span id="Assighment-Count">0</span></div>
+      <div id="loading-spinner" style="display:none;">Loading...</div>
+
+    </div>
+
+    <!-- loading spinner for my wed page-->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    
+    
+    <div id="my-classes" class="section">
+      <h2>My Classes</h2>
+      <p>Manage your class schedules and curriculums.</p>
+      <div class="message-box">
+        <div id="create-class-form">
+          <input type="text" id="class-name" placeholder="Class Name">
+          <input type="text" id="class-description" placeholder="Class Description">
+          <button id="create-class-button">Create Class</button>
+        </div>
+        <div id="class-items"></div>
+
+              <!-- Student Selection Modal -->
+              <div id="student-selection-modal" style="display: none;">
+                <h2>Select Students</h2>
+                <label for="class-filter">Filter by Class:</label>
+                <select id="class-filter">
+                    <option value="">All Classes</option>
+                </select>
+                <div id="student-list"></div>
+                <button id="add-students-button">Add Students</button>
+                <button id="close-student-modal">Close</button>
+            </div>
+            
+      </div>
+    </div>
+
+    <div id="students12" class="section">
+      <h2>Students</h2>
+      <p>View and manage information for students in your classes.</p>
+      <div>
+        <select id="classFilter">
+         
+          <!-- Populate this with classes dynamically -->
+      </select>
+      <button id="applyFilter">Apply Filter</button>
+      <div class="students-in-classes"></div>
+      
+      </div>
+      <div class="students-in-classes">
+        
+      </div>
+
+      <div id="imageModal" class="modal" style="display:none;">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage" />
+        <div id="caption"></div>
+    </div>
+    
+  </div>
+  
+
+
+  <div id="attendance" class="section">
+    <h2>Attendance Management</h2>
+    <p>Select a class and mark attendance, view attendance records, or generate attendance reports.</p>
+    <div id="classButtonContainer">
+        <h3>Select Class for Attendance:</h3>
+        <div id="classButtons"></div> <!-- This will be populated with class buttons dynamically -->
+    </div>
+    <ul>
+        <li><button id="markAttendanceBtn">Mark Attendance</button></li>
+        <li><button id="viewAttendanceBtn">View Attendance Records</button></li>
+        <li><button id="generateReportBtn">Generate Attendance Report</button></li>
+    </ul>
+    <div id="attendanceTableDiv" style="display: none;">
+        <h3>Mark Attendance for <span id="selectedClassName"></span></h3>
+        <table id="attendanceTable">
+            <tbody></tbody>
+        </table>
+        <button id="submitAttendanceBtn">Submit Attendance</button>
+    </div>
+    <div id="attendanceRecordsDiv" style="display: none;">
+        <h3>Attendance Records for <span id="recordClassName"></span></h3>
+        <table id="attendanceRecordsTable">
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="attendanceReportDiv" style="display: none;">
+        <h3>Attendance Report for <span id="reportClassName"></span></h3>
+    </div>
+</div>
+
+
+<div id="assignments" class="section">
+    <!-- Create Assignment Modal -->
+<div id="createAssignmentModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeModal('createAssignmentModal')">&times;</span>
+  <h3>Create New Assignment</h3>
+  <form id="createAssignmentForm">
+      <label for="assignmentTitle">Title:</label>
+      <input type="text" id="assignmentTitle" required>
+      <br>
+      <label for="assignmentDescription">Description:</label>
+      <textarea id="assignmentDescription" required></textarea>
+      <br>
+      <label for="assignmentDueDate">Due Date:</label>
+      <input type="date" id="assignmentDueDate" required>
+      <br>
+      <button type="submit">Create Assignment</button>
+  </form>
+</div>
+</div>
+
+<!-- Update Assignment Modal -->
+<div id="updateAssignmentModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeModal('updateAssignmentModal')">&times;</span>
+  <h3>Update Assignment</h3>
+  <form id="updateAssignmentForm">
+      <label for="updateAssignmentId">Assignment ID:</label>
+      <input type="text" id="updateAssignmentId" required>
+      <br>
+      <label for="updateAssignmentTitle">New Title:</label>
+      <input type="text" id="updateAssignmentTitle">
+      <br>
+      <label for="updateAssignmentDescription">New Description:</label>
+      <textarea id="updateAssignmentDescription"></textarea>
+      <br>
+      <label for="updateAssignmentDueDate">New Due Date:</label>
+      <input type="date" id="updateAssignmentDueDate">
+      <br>
+      <button type="submit">Update Assignment</button>
+  </form>
+</div>
+</div>
+
+
+<!-- Provide Feedback Modal -->
+<div id="feedbackModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeModal('feedbackModal')">&times;</span>
+  <h3>Provide Feedback</h3>
+  <form id="feedbackForm">
+      <label for="feedbackAssignmentId">Assignment ID:</label>
+      <input type="text" id="feedbackAssignmentId" required>
+      <br>
+      <label for="feedbackStudentId">Student ID:</label>
+      <input type="text" id="feedbackStudentId" required>
+      <br>
+      <label for="feedback">Feedback:</label>
+      <textarea id="feedback" required></textarea>
+      <br>
+      <button type="submit">Provide Feedback</button>
+  </form>
+</div>
+</div>
+
+<div>
+<h3>Existing Assignments</h3>
+<ul id="assignmentsList"></ul>
+<div id="loadingSpinner" style="display: none;">Loading...</div>
+
+</div>
+
+<div>
+<h3>Select Class for Assignments</h3>
+<div id="classButtonsForAssighment"></div>
+</div>
+
+<!-- This section can be used to display messages or status updates -->
+<div id="statusMessage" style="color: red;"></div>
+
+<!-- Buttons to open modals -->
+<button onclick="openModal('createAssignmentModal')">Create Assignment</button>
+<button onclick="openModal('updateAssignmentModal')">Update Assignment</button>
+<button onclick="openModal('feedbackModal')">Provide Feedback</button>
+
+      
+</div>
+
+
+
+<div id="grades" class="section">
+    <h2>Your Classes</h2>
+    <ul id="classSelectMarks"></ul>
+</div>
+
+
+  <div id="notifications" class="section">
+
+    <h2>Notifications</h2>
+
+    <p>Send and view class notifications.</p>
+
+    <ul>
+        <li>
+            <button id="refreshNotificationsBtn">Refresh Notifications</button>
+        </li>
+        <li>
+            <button id="sendNotificationBtn">Send new notification</button>
+        </li>
+    </ul>
+
+    <div id="notificationsContainer">
+        <div class="notification-counter" id="notificationCounter">0</div>
+        <div id="notificationsList"></div>
+    </div>
+    
+<!-- Modal for sending notification -->
+<div id="notificationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeNotificationModal">&times;</span>
+        <h3>Send Notification</h3>
+        <form id="sendNotificationForm">
+            <label for="classSelect">Select Class:</label>
+            <select id="classSelect"></select>
+            <label for="notificationMessage">Message:</label>
+            <textarea id="notificationMessage" rows="4" placeholder="Enter your message here"></textarea>
+            <button type="submit" id="submitNotificationBtn">Send Notification</button>
+        </form>
+        <div id="loadingSpinner" style="display: none;">
+            <p>Sending...</p>
+            <img src="images/spinner.gif" alt="Loading..." /> <!-- Replace with your spinner image -->
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+  <script>
+    function showSection(sectionId) {
+      // First, remove 'active' class from all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Get the element with the specified sectionId
+      const sectionElement = document.getElementById(sectionId);
+
+      // Check if the element exists before attempting to modify its classList
+      if (sectionElement) {
+        sectionElement.classList.add('active');
+      } else {
+        console.warn(`Element with id '${sectionId}' not found.`);
+      }
+    }
+
+
+// Function to open the modal=========================================
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    // Function to close the modal
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                closeModal(modal.id);
+            }
+        });
+    };
+
+    // Optionally, you can also add event listeners to handle form submissions
+    document.getElementById('createAssignmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Add your create assignment logic here
+        closeModal('createAssignmentModal'); // Close modal after submission
+    });
+
+
+  </script>
+ <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs, setDoc, addDoc, doc , writeBatch , getDoc , deleteDoc ,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+ 
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA1biSer_PoTi1jOPQLr8hMJEo8lzcJDaM",
+    authDomain: "school-management-1dac2.firebaseapp.com",
+    projectId: "school-management-1dac2",
+    storageBucket: "school-management-1dac2.appspot.com",
+    messagingSenderId: "545480440389",
+    appId: "1:545480440389:web:84f127bb00c44a473ac12c",
+    measurementId: "G-LELWKCKHN7",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+const storage = getStorage(app); // Initialize Firebase Storage
+
+//------------------------ loading spinner ------------//
+function showSpinner() {
+    const spinner = document.getElementById("loadingSpinner");
+    spinner.style.display = "flex"; // Show the spinner
+}
+
+function hideSpinner() {
+    const spinner = document.getElementById("loadingSpinner");
+    spinner.style.display = "none"; // Hide the spinner
+}
+// --------------------------------loading spinner end -----------//
+
+ // Declare teacherUid globally
+let teacherUid;
+
+// Function to load teacher data
+async function loadTeacherData() {
+    // Show spinner
+    document.getElementById("loading-spinner").style.display = "block";
+
+    // Retrieve email from local storage
+    const email = localStorage.getItem("userEmail");
+    console.log(`Retrieving data for teacher with email: ${email}`);
+
+    if (!email) {
+        alert("No email found in local storage.");
+        document.getElementById("loading-spinner").style.display = "none";
+        return;
+    }
+
+    try {
+        // Query for the teacher with the given email
+        const teacherQueryRef = collection(firestore, "teachers");
+        const emailQuery = query(teacherQueryRef, where("email", "==", email));
+        const snapshot = await getDocs(emailQuery);
+
+        console.log(`Teacher query snapshot: ${snapshot.size} documents found.`);
+
+        // Check if any teacher matches the email
+        if (!snapshot.empty) {
+            snapshot.forEach(doc => {
+                const teacherData = doc.data();
+                console.log(`Found teacher: ${teacherData.fullName}`);
+                console.log(`Teacher UID: ${doc.id}`);
+                
+                // Store UID in the global variable
+                teacherUid = doc.id;
+
+                // Display teacher information
+                document.getElementById("profile-picture").src = teacherData.imageUrl || "";
+                document.getElementById("teacher-name").textContent = teacherData.fullName || "Name not available";
+                document.getElementById("teacher-email").textContent = `Email: ${teacherData.email || "Not available"}`;
+                document.getElementById("teacher-subject").textContent = `Subject: ${teacherData.subject || "Not available"}`;
+                document.getElementById("teacher-description").textContent = teacherData.description || "No description available";
+
+                // Store the teacher UID in the data attribute and local storage
+                document.getElementById("edit-profile").dataset.uid = teacherUid;
+                localStorage.setItem('teacherUid', teacherUid);
+
+                // Now print the global teacherUid
+                console.log(`Global Teacher UID after assignment: ${teacherUid}`);
+            });
+            
+            // Optional: If you need to use the teacherUid after the loop completes
+            console.log(`Final Teacher UID outside loop: ${teacherUid}`);
+         
+        } else {
+            alert("No teacher found with the provided email.");
+        }
+
+    } catch (error) {
+        console.error("Error retrieving teacher data:", error);
+        alert("Failed to load teacher data. Please try again.");
+    } finally {
+        // Hide spinner
+        document.getElementById("loading-spinner").style.display = "none";
+    }
+}
+
+// Load teacher data when the page loads
+window.onload = loadTeacherData;
+
+
+// Logout functionality
+document.getElementById("logout-button").addEventListener("click", function() {
+    localStorage.clear();
+    window.location.href = "index.html";
+});
+
+// Show the modal for editing the profile
+document.getElementById("edit-profile").addEventListener("click", function() {
+    // Show the edit profile modal
+    const currentName = document.getElementById("teacher-name").textContent;
+    const currentSubject = document.getElementById("teacher-subject").textContent.replace("Subject: ", "");
+    const currentDescription = document.getElementById("teacher-description").textContent;
+
+    document.getElementById("edit-name").value = currentName;
+    document.getElementById("edit-subject").value = currentSubject;
+    document.getElementById("edit-description").value = currentDescription;
+
+    document.getElementById("edit-profile-modal").style.display = "block"; // Show the modal
+});
+
+// Close the modal when the user clicks on <span> (x)
+document.getElementById("close-modal").addEventListener("click", function() {
+    document.getElementById("edit-profile-modal").style.display = "none"; // Hide modal
+});
+
+// Cancel editing
+document.getElementById("cancel-edit").addEventListener("click", function() {
+    document.getElementById("edit-profile-modal").style.display = "none"; // Hide modal
+});
+
+// Save changes functionality
+document.getElementById("save-profile").addEventListener("click", async function() {
+    const email = localStorage.getItem("userEmail"); // Assuming the email is still stored
+    const updatedData = {
+        fullName: document.getElementById("edit-name").value,
+        subject: document.getElementById("edit-subject").value,
+        description: document.getElementById("edit-description").value
+    };
+
+    // Show loading spinner
+    document.getElementById("loading-spinner").style.display = "block";
+
+    // Handle image upload
+    const imageFile = document.getElementById("edit-image").files[0];
+    if (imageFile) {
+        const imageRef = storageRef(storage, `profile_pictures/${email}`); // Create a storage reference
+        try {
+            // Upload the image
+            await uploadBytes(imageRef, imageFile);
+            const imageUrl = await getDownloadURL(imageRef); // Get the download URL
+            
+            // Update the image URL in the updatedData object
+            updatedData.imageUrl = imageUrl;
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            alert("Failed to upload image. Please try again.");
+            document.getElementById("loading-spinner").style.display = "none"; // Hide spinner
+            return; // Exit if the image upload fails
+        }
+    }
+
+    try {
+        // Query for the teacher's document using the email to get UID
+        const teacherQueryRef = collection(firestore, "teachers");
+        const emailQuery = query(teacherQueryRef, where("email", "==", email));
+        const snapshot = await getDocs(emailQuery);
+
+        if (!snapshot.empty) {
+            const docRef = snapshot.docs[0].ref; // Get the reference of the first matching document
+            await setDoc(docRef, updatedData, { merge: true }); // Update the document
+            alert("Profile updated successfully!");
+
+            // Reload the teacher data to refresh the display
+            loadTeacherData(); 
+            document.getElementById("edit-profile-modal").style.display = "none"; // Hide modal
+        } else {
+            alert("No teacher found with the provided email.");
+        }
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile. Please try again.");
+    } finally {
+        // Hide loading spinner
+        document.getElementById("loading-spinner").style.display = "none";
+    }
+});
+
+//------------------class creating part-------------------------//
+
+async function createClass() {
+    const className = document.getElementById("class-name").value.trim();
+    const classDescription = document.getElementById("class-description").value.trim();
+
+    if (!className || !classDescription) {
+        alert("Please fill in both the class name and description.");
+        return;
+    }
+
+    try {
+        // Fetch teacher's email
+        const teacherDoc = await getDoc(doc(firestore, `teachers/${teacherUid}`));
+        const teacherEmail = teacherDoc.data().email; // Assuming the email field exists
+
+        // Add the new class to the classesForTeachers collection
+        const classRef = await addDoc(collection(firestore, `classesForTeachers`), {
+            name: className,
+            description: classDescription,
+            createdAt: new Date(),
+            teacherUid: teacherUid,
+            teacherEmail: teacherEmail // Add teacher's email
+        });
+
+        console.log("Class created with ID: ", classRef.id);
+        alert("Class created successfully!");
+
+        // Clear the input fields
+        document.getElementById("class-name").value = "";
+        document.getElementById("class-description").value = "";
+
+        // Optionally, refresh the class list
+        loadClasses();
+
+    } catch (error) {
+        console.error("Error creating class: ", error);
+        alert("Failed to create class. Please try again.");
+    }
+}
+
+// Event listener for the button
+document.getElementById("create-class-button").addEventListener("click", createClass);
+
+// Function to load and display classes for the teacher
+async function loadClasses() {
+    console.log(`Using global Teacher UID in loadClasses: ${teacherUid}`);
+    const classItemsContainer = document.getElementById("class-items"); // Container to display classes
+
+    // Clear the existing class items
+    classItemsContainer.innerHTML = "";
+
+    // Create a table
+    const table = document.createElement("table");
+    table.className = "classes-table"; // You can style this class in your CSS
+
+    // Create table headers
+    const thead = document.createElement("thead");
+    thead.innerHTML = `
+        <tr>
+            <th>Class Name</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    `;
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+
+    try {
+        // Query for classes in the classesForTeachers collection
+        const classQueryRef = query(collection(firestore, `classesForTeachers`), where("teacherUid", "==", teacherUid));
+        const classSnapshot = await getDocs(classQueryRef);
+
+        if (!classSnapshot.empty) {
+            classSnapshot.forEach(doc => {
+                const classData = doc.data();
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${classData.name}</td>
+                    <td>${classData.description}</td>
+                    <td>${classData.createdAt.toDate().toLocaleString()}</td>
+                    <td>
+                        <button class="edit-class-button" data-id="${doc.id}"><i class="fas fa-edit"></i></button>
+                        <button class="delete-class-button" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
+                        <button class="enroll-students-button" data-id="${doc.id}"><i class="fas fa-plus"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        } else {
+            tbody.innerHTML = "<tr><td colspan='4'>No classes created yet.</td></tr>";
+        }
+
+        table.appendChild(tbody);
+        classItemsContainer.appendChild(table);
+
+        // Add event listeners for edit, delete, and enroll buttons
+        addClassButtonListeners();
+    } catch (error) {
+        console.error("Error loading classes:", error);
+        alert("Failed to load classes. Please try again.");
+    }
+}
+
+// Function to add listeners for class buttons
+function addClassButtonListeners() {
+    // Edit class button listener
+    const editButtons = document.querySelectorAll(".edit-class-button");
+    editButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const classId = this.dataset.id;
+            // Implement the logic to handle editing the class
+            alert(`Edit class with ID: ${classId}`);
+        });
+    });
+
+    // Delete class button listener
+    const deleteButtons = document.querySelectorAll(".delete-class-button");
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", async function() {
+            const classId = this.dataset.id;
+            const confirmDelete = confirm("Are you sure you want to delete this class?");
+            if (confirmDelete) {
+                await deleteClass(classId);
+            }
+        });
+    });
+
+    // Enroll students button listener
+    const enrollButtons = document.querySelectorAll(".enroll-students-button");
+    enrollButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const classId = this.dataset.id;
+            loadStudents(classId); // Load students for the selected class
+        });
+    });
+}
+
+// Function to load and display students
+async function loadStudents(classId) {
+    const studentListContainer = document.getElementById("student-list");
+    studentListContainer.innerHTML = ""; // Clear existing student list
+
+    const table = document.createElement("table");
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Image</th> <!-- Added Image column -->
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id="student-table-body"></tbody>
+    `;
+
+    studentListContainer.appendChild(table); // Add the table to the container
+
+    const tableBody = document.getElementById("student-table-body");
+
+    try {
+        // Fetch enrolled students for the selected class
+        const classRef = doc(firestore, `classesForTeachers/${classId}`);
+        const classDoc = await getDoc(classRef);
+        const enrolledStudents = classDoc.exists() ? classDoc.data().enrolledStudents || [] : [];
+
+        // Load students
+        const studentQueryRef = collection(firestore, "students");
+        const studentSnapshot = await getDocs(studentQueryRef);
+
+        studentSnapshot.forEach(doc => {
+            const studentData = doc.data();
+            const studentRow = document.createElement("tr");
+            const studentId = doc.id;
+
+            // Check if the student is enrolled in the class
+            if (enrolledStudents.includes(studentId)) {
+                studentRow.style.backgroundColor = "lightgreen"; // Enrolled students in green
+            } else {
+                studentRow.style.backgroundColor = "lightyellow"; // Not enrolled students in yellow
+            }
+
+            // Added image URL
+            const imageUrl = studentData.imageUrl || 'default-image-url.jpg'; // Use a default image if none is provided
+
+            studentRow.innerHTML = `
+                <td><input type="checkbox" value="${studentId}" /></td>
+                <td><img src="${imageUrl}" alt="${studentData.firstName} ${studentData.lastName}" style="width: 50px; height: auto;" /></td> <!-- Image column -->
+                <td>${studentData.firstName}</td>
+                <td>${studentData.lastName}</td>
+                <td>${studentData.dob}</td>
+                <td>${studentData.gender}</td>
+                <td>${studentData.email}</td>
+                <td>${studentData.phone}</td>
+            `;
+            tableBody.appendChild(studentRow);
+        });
+
+        document.getElementById("student-selection-modal").style.display = "block"; // Show the modal
+
+        // Add listener for the add button
+        document.getElementById("add-students-button").onclick = function() {
+            addStudentsToClass(classId);
+        };
+
+        // Close modal when clicking on close button
+        document.getElementById("close-student-modal").onclick = function() {
+            document.getElementById("student-selection-modal").style.display = "none";
+        };
+    } catch (error) {
+        console.error("Error loading students:", error);
+        alert("Failed to load students. Please try again.");
+    }
+}
+
+
+// Function to filter students by selected class
+function filterStudentsByClass(selectedClassId, studentSnapshot, tableBody, enrolledStudents) {
+    tableBody.innerHTML = ""; // Clear current student rows
+
+    studentSnapshot.forEach(doc => {
+        const studentData = doc.data();
+        const studentRow = document.createElement("tr");
+        const studentId = doc.id;
+
+        // Check if the student belongs to the selected class
+        if (studentData.classId === selectedClassId) { // Assuming student has a field 'classId'
+            // Check if the student is enrolled in the class
+            if (enrolledStudents.includes(studentId)) {
+                studentRow.style.backgroundColor = "lightgreen"; // Enrolled students in green
+            } else {
+                studentRow.style.backgroundColor = "lightyellow"; // Not enrolled students in yellow
+            }
+
+            studentRow.innerHTML = `
+                <td><input type="checkbox" value="${studentId}" /></td>
+                <td>${studentData.firstName}</td>
+                <td>${studentData.lastName}</td>
+                <td>${studentData.dob}</td>
+                <td>${studentData.gender}</td>
+                <td>${studentData.email}</td>
+                <td>${studentData.phone}</td>
+            `;
+            tableBody.appendChild(studentRow);
+        }
+    });
+}
+
+
+// Function to add students to a class
+async function addStudentsToClass(classId) {
+    const selectedStudents = Array.from(document.querySelectorAll("#student-list input:checked"))
+        .map(input => input.value);
+
+    if (selectedStudents.length === 0) {
+        alert("Please select at least one student to enroll.");
+        return;
+    }
+
+    console.log(`Using global teacherUid in addStudentsToClass: ${teacherUid}`);
+
+    try {
+        const classRef = doc(firestore, `classesForTeachers/${classId}`);
+        const classSnapshot = await getDoc(classRef);
+
+        let enrolledStudents = [];
+        if (classSnapshot.exists()) {
+            enrolledStudents = classSnapshot.data().enrolledStudents || [];
+        }
+
+        const studentsToAdd = selectedStudents.filter(student => !enrolledStudents.includes(student));
+
+        if (studentsToAdd.length === 0) {
+            alert("All selected students are already enrolled in this class.");
+            return;
+        }
+
+        const updatedEnrolledStudents = [...new Set([...enrolledStudents, ...studentsToAdd])];
+        await setDoc(classRef, { enrolledStudents: updatedEnrolledStudents }, { merge: true });
+
+        const studentsCollectionRef = collection(classRef, "students");
+        const batch = writeBatch(firestore);
+
+        for (const studentId of studentsToAdd) {
+            const studentRef = doc(firestore, `students/${studentId}`);
+            const studentSnapshot = await getDoc(studentRef);
+
+            if (studentSnapshot.exists()) {
+                const studentData = studentSnapshot.data();
+                const studentDetails = {
+                    enrolled: true,
+                    firstName: studentData.firstName,
+                    lastName: studentData.lastName,
+                    dob: studentData.dob,
+                    gender: studentData.gender,
+                    email: studentData.email,
+                    phone: studentData.phone,
+                    imageUrl: studentData.imageUrl || 'default-image-url.jpg' // Include imageUrl with a default fallback
+                };
+
+                const studentDocRef = doc(studentsCollectionRef, studentId);
+                batch.set(studentDocRef, studentDetails);
+            } else {
+                console.warn(`Student with ID ${studentId} does not exist.`);
+            }
+        }
+
+        await batch.commit();
+        alert("Students enrolled successfully!");
+        document.getElementById("student-selection-modal").style.display = "none";
+        loadClasses();
+    } catch (error) {
+        console.error("Error enrolling students:", error);
+        alert("Failed to enroll students. Please try again.");
+    }
+}
+
+// Function to delete a class
+async function deleteClass(classId) {
+    console.log(`Using global teacherUid in deleteClass: ${teacherUid}`);
+
+    const classRef = doc(firestore, `classesForTeachers/${classId}`);
+    
+    try {
+        await deleteDoc(classRef);
+        alert("Class deleted successfully!");
+        loadClasses(); // Reload the classes to refresh the display
+    } catch (error) {
+        console.error("Error deleting class:", error);
+        alert("Failed to delete class. Please try again.");
+    }
+}
+
+// Call the loadClasses function when the page loads or after creating a class
+window.onload = async function() {
+    await loadTeacherData(); // Load teacher data, this sets the global teacherUid
+    await loadClasses();      // Load classes for the teacher
+};
+
+//-----------viewing student in classes in the student section --------------//
+
+
+// Function to populate the class filter dropdown
+async function populateClassFilterDropdown() {
+    const teacherEmail = localStorage.getItem('userEmail'); // Retrieve email from local storage
+    console.log(`Using teacherEmail: ${teacherEmail}`);
+
+    const classQueryRef = collection(firestore, `classesForTeachers`);
+    
+    try {
+        const classSnapshot = await getDocs(classQueryRef);
+        const classFilter = document.getElementById("classFilter");
+        classFilter.innerHTML = '<option value="">Select a class</option>'; // Clear previous options
+
+        if (classSnapshot.empty) {
+            console.log("No classes found for this teacher.");
+            return;
+        }
+
+        classSnapshot.forEach(doc => {
+            const classData = doc.data();
+            if (classData.teacherEmail === teacherEmail) { // Check against the email
+                const option = document.createElement("option");
+                option.value = doc.id; // Set the value to the class ID
+                option.textContent = classData.name; // Display the class name
+                classFilter.appendChild(option);
+            }
+        });
+
+        console.log(`${classSnapshot.size} classes loaded.`);
+    } catch (error) {
+        console.error("Error fetching classes:", error);
+        alert("Failed to load classes. Please try again.");
+    }
+} 
+
+// Function to view students in a class
+async function viewStudentsInClass(classId) {
+    console.log(`Class ID: ${classId}`);
+
+    try {
+        $('#loadingIndicator').show(); // Show loading indicator
+
+        const classDocRef = doc(firestore, `classesForTeachers/${classId}`);
+        const classDoc = await getDoc(classDocRef);
+
+        if (!classDoc.exists()) {
+            console.error("Class not found.");
+            alert("Class not found.");
+            return;
+        }
+
+        const classData = classDoc.data();
+        const className = classData.name;
+        const classDescription = classData.description;
+
+        const studentsCollectionRef = collection(firestore, `classesForTeachers/${classId}/students`);
+        const studentsSnapshot = await getDocs(studentsCollectionRef);
+
+        const studentsDiv = document.querySelector(".students-in-classes");
+        studentsDiv.innerHTML = ""; // Clear previous results
+
+        // Create a table to display the students
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tbody = document.createElement("tbody");
+
+        // Build the table header
+        const totalStudents = studentsSnapshot.size; // Get the total number of students
+        thead.innerHTML = `
+            <th colspan="6">
+                ${className}
+                <span style="float: right;">Total Students: ${totalStudents}</span> <!-- Right-aligned total -->
+            </th>
+            <tr>
+                <th>Description:</th>
+                <td colspan="5">${classDescription}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        `;
+
+        // Check if there are students and build the table body
+        if (studentsSnapshot.empty) {
+            console.log("No students found in this class.");
+            tbody.innerHTML = "<tr><td colspan='6'>No students enrolled in this class.</td></tr>";
+        } else {
+            console.log(`Found ${studentsSnapshot.size} students in this class.`);
+
+            studentsSnapshot.forEach(doc => {
+                const studentData = doc.data();
+                console.log(`Student Data: ${JSON.stringify(studentData)}`);
+
+                // Inside the studentsSnapshot.forEach loop, update the row creation
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><img src="${studentData.imageUrl || 'images/default-image.jpg'}" alt="Student Image" class="student-image" onclick="openModal('${studentData.imageUrl || 'images/default-image.jpg'}')" /></td>
+                    <td>${studentData.firstName}</td>
+                    <td>${studentData.lastName}</td>
+                    <td>${studentData.email}</td>
+                    <td>${studentData.gender || 'N/A'}</td>
+                    <td>
+                        <button class="delete-student" data-student-id="${doc.id}">
+                            <img src="images/trash-image.jpg" alt="Delete" class="trash-icon" />
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+
+                // Add modal functions
+                function openModal(imageUrl) {
+                const modal = document.getElementById("imageModal");
+                console.log("Modal Element:", modal); // Check if this is null
+                const modalImg = document.getElementById("modalImage");
+                const caption = document.getElementById("caption");
+
+                if (!modal) {
+                    console.error("Modal not found!");
+                    return; // Exit if modal is not found
+                }
+
+                modal.style.display = "block";
+                modalImg.src = imageUrl;
+                caption.innerHTML = "Student Image";
+
+                const span = document.getElementsByClassName("close")[0];
+                span.onclick = function() {
+                    modal.style.display = "none";
+                };
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                };
+            }
+
+
+            });
+        }
+
+        // Append thead and tbody to the table
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        studentsDiv.appendChild(table);
+        addDeleteStudentListeners(classId); // Pass the correct classId
+
+    } catch (error) {
+        console.error("Error fetching students:", error);
+        alert("Failed to load students. Please try again.");
+    } finally {
+        $('#loadingIndicator').hide(); // Hide loading indicator
+    }
+}
+
+// Function to add delete listeners for students
+async function addDeleteStudentListeners(classId) {
+    const deleteButtons = document.querySelectorAll(".delete-student");
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const studentId = this.dataset.studentId;
+
+            if (confirm("Are you sure you want to delete this student?")) {
+                try {
+                    // Reference to the student document in the class
+                    const studentDocRef = doc(firestore, `classesForTeachers/${classId}/students/${studentId}`);
+                    
+                    // Fetch the class document to get enrolled students
+                    const classRef = doc(firestore, `classesForTeachers/${classId}`);
+                    const classSnapshot = await getDoc(classRef);
+                    let enrolledStudents = classSnapshot.exists() ? classSnapshot.data().enrolledStudents || [] : [];
+
+                    // Remove the student from the enrolledStudents array
+                    enrolledStudents = enrolledStudents.filter(id => id !== studentId);
+
+                    // Update the class document with the modified enrolledStudents array
+                    await setDoc(classRef, { enrolledStudents }, { merge: true });
+
+                    // Delete the student document
+                    await deleteDoc(studentDocRef);
+                    alert("Student deleted successfully!");
+
+                    // Refresh the student list
+                    viewStudentsInClass(classId);
+                } catch (error) {
+                    console.error("Error deleting student:", error);
+                    alert("Failed to delete student. Please try again.");
+                }
+            }
+        });
+    });
+}
+
+// Event listener for applying the filter
+document.getElementById("applyFilter").addEventListener("click", async () => {
+    const classFilter = document.getElementById("classFilter");
+    const classId = classFilter.value; // Get the selected class ID from the dropdown
+
+    if (classId) {
+        await viewStudentsInClass(classId);
+    } else {
+        console.log("No class selected.");
+    }
+});
+
+// Call this function to populate the dropdown when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    populateClassFilterDropdown();
+});
+
+//---------------Attendence marking ----------- tracking ---------------Student-------------//
+// Function to populate class buttons for attendance
+async function populateClassButtons() {
+    const teacherEmail = localStorage.getItem('userEmail'); // Retrieve email from local storage
+    console.log("Global Teacher Email:", teacherEmail); // Log the global teacher email
+
+    const classesCollectionRef = collection(firestore, `classesForTeachers`);
+
+    try {
+        const classesSnapshot = await getDocs(classesCollectionRef);
+        console.log("Classes Snapshot:", classesSnapshot); // Log the snapshot
+
+        const classButtonsContainer = document.getElementById("classButtons");
+        classButtonsContainer.innerHTML = ''; // Clear previous buttons
+
+        if (classesSnapshot.empty) {
+            console.warn("No classes found for this teacher.");
+            classButtonsContainer.innerHTML = '<p>No classes available.</p>'; // Show message if no classes
+            return; // Exit if there are no classes
+        }
+
+        classesSnapshot.forEach(doc => {
+            const classData = doc.data();
+            // Check if the class is associated with the current teacher
+            if (classData.teacherEmail === teacherEmail) {
+                const buttonContainer = document.createElement("div");
+                buttonContainer.className = "class-button"; // Optional: Add a class for styling
+
+                const button = document.createElement("button");
+                button.textContent = classData.name; // Display the class name
+                button.dataset.classId = doc.id; // Store the class ID
+
+                // Create a tooltip description element
+                const tooltip = document.createElement("span");
+                tooltip.textContent = classData.description || "No description available."; // Class description
+                tooltip.className = "class-tooltip"; // Add a class for styling
+                tooltip.style.display = 'none'; // Initially hidden
+                tooltip.style.position = 'absolute'; // Position it absolutely
+                tooltip.style.backgroundColor = '#f9f9f9'; // Background color for tooltip
+                tooltip.style.border = '1px solid #ccc'; // Border for the tooltip
+                tooltip.style.padding = '5px'; // Padding for better look
+                tooltip.style.zIndex = '1000'; // Make sure it’s on top
+                tooltip.style.marginTop = '5px'; // Space between button and tooltip
+
+                // Add mouseover and mouseout events to show/hide the tooltip
+                button.addEventListener('mouseover', () => {
+                    tooltip.style.display = 'block'; // Show tooltip on hover
+                });
+
+                button.addEventListener('mouseout', () => {
+                    tooltip.style.display = 'none'; // Hide tooltip when not hovering
+                });
+
+                // Add click event listener to the button
+                button.addEventListener('click', () => {
+                    handleClassSelection(doc.id, classData.name); // Select class
+                });
+
+                // Append the button and tooltip to the container
+                buttonContainer.appendChild(button);
+                buttonContainer.appendChild(tooltip);
+                classButtonsContainer.appendChild(buttonContainer);
+            }
+        });
+
+        console.log(`${classButtonsContainer.children.length} classes loaded.`);
+    } catch (error) {
+        console.error("Error fetching classes:", error);
+        alert("Failed to load classes for attendance. Please check your connection and try again.");
+    }
+}
+
+// Handle class selection
+function handleClassSelection(classId, className) {
+    document.querySelectorAll("#classButtons button").forEach(button => button.classList.remove('active'));
+    const selectedButton = document.querySelector(`#classButtons button[data-class-id="${classId}"]`);
+    selectedButton.classList.add('active');
+
+    document.getElementById("selectedClassName").textContent = className;
+    document.getElementById("attendanceTableDiv").style.display = 'block';
+    document.getElementById("attendanceRecordsDiv").style.display = 'none';
+    document.getElementById("attendanceReportDiv").style.display = 'none';
+
+    // Load attendance data for the selected class
+    loadAttendanceData(classId);
+}
+
+// Load attendance data for the selected class
+async function loadAttendanceData(classId) {
+    const attendanceData = await fetchAttendanceData(classId); // Assume this function is defined elsewhere
+    const attendanceTableBody = document.getElementById("attendanceTable").querySelector('tbody');
+    attendanceTableBody.innerHTML = ''; // Clear previous data
+
+    attendanceData.forEach(record => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${record.studentName}</td><td><input type="checkbox" ${record.present ? 'checked' : ''}></td>`;
+        attendanceTableBody.appendChild(row);
+    });
+}
+
+// Call this function to populate class buttons when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    populateClassButtons();
+});
+
+// Fetch attendance data from Firestore
+async function fetchAttendanceData(classId) {
+    const studentsCollectionRef = collection(firestore, `classesForTeachers/${classId}/students`);
+    const studentsSnapshot = await getDocs(studentsCollectionRef);
+
+    const attendanceRecords = [];
+    studentsSnapshot.forEach(doc => {
+        const studentData = doc.data();
+        attendanceRecords.push({
+            studentName: `${studentData.firstName} ${studentData.lastName}`,
+            present: false // Default value; adjust as needed
+        });
+    });
+
+    return attendanceRecords;
+}
+
+// Event listener for marking attendance when a class button is selected
+document.getElementById("markAttendanceBtn").addEventListener("click", () => {
+    const selectedClassButton = document.querySelector("#classButtons button.active");
+    if (selectedClassButton) {
+        const classId = selectedClassButton.dataset.classId;
+        markAttendance(classId);
+    } else {
+        alert("Please select a class.");
+    }
+});
+
+// Function to mark attendance
+async function markAttendance(classId) {
+    const attendanceRecords = []; // Collect attendance records
+    const attendanceTableBody = document.getElementById("attendanceTable").querySelector('tbody');
+    attendanceTableBody.querySelectorAll("tr").forEach(row => {
+        const studentName = row.cells[0].textContent;
+        const present = row.querySelector("input[type='checkbox']").checked;
+        attendanceRecords.push({ studentName, present });
+    });
+
+    // Create a new attendance session document in Firestore
+    const attendanceRef = collection(firestore, `classesForTeachers/${classId}/attendance`);
+    const attendanceSessionDocRef = doc(attendanceRef); // Create a new document for this session
+
+    const attendanceData = {
+        date: new Date().toISOString(), // Store the current date and time
+        records: attendanceRecords // Store attendance records
+    };
+
+    try {
+        await setDoc(attendanceSessionDocRef, attendanceData); // Save the attendance session
+        console.log("Attendance marked for class ID:", classId, "Records:", attendanceRecords);
+        alert("Attendance has been marked successfully.");
+    } catch (error) {
+        console.error("Error marking attendance:", error);
+        alert("Failed to mark attendance. Please try again.");
+    }
+}
+
+// Fetch attendance records from Firestore
+async function fetchAttendanceRecords(classId) {
+    const attendanceCollectionRef = collection(firestore, `classesForTeachers/${classId}/attendance`);
+    try {
+        const attendanceSnapshot = await getDocs(attendanceCollectionRef);
+
+        const attendanceRecords = [];
+        attendanceSnapshot.forEach(doc => {
+            const record = doc.data();
+            record.records.forEach(studentRecord => {
+                attendanceRecords.push({
+                    studentName: studentRecord.studentName,
+                    present: studentRecord.present,
+                    date: record.date // Include the date of attendance
+                });
+            });
+        });
+
+        return attendanceRecords;
+    } catch (error) {
+        console.error("Error fetching attendance records:", error);
+        throw error; // Propagate the error
+    }
+}
+
+// Function to view attendance records
+async function viewAttendanceRecords(classId) {
+    try {
+        const attendanceRecords = await fetchAttendanceRecords(classId); // Fetch records from Firestore
+        const attendanceRecordsTableBody = document.getElementById("attendanceRecordsTable").querySelector('tbody');
+        attendanceRecordsTableBody.innerHTML = ''; // Clear previous records
+
+        attendanceRecords.forEach(record => {
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${record.studentName}</td><td>${record.present ? 'Present' : 'Absent'}</td><td>${new Date(record.date).toLocaleDateString()}</td>`; // Format date
+            attendanceRecordsTableBody.appendChild(row);
+        });
+
+        document.getElementById("recordClassName").textContent = `Attendance Records for Class ID: ${classId}`; // Update with actual class name
+        document.getElementById("attendanceRecordsDiv").style.display = 'block';
+        document.getElementById("attendanceTableDiv").style.display = 'none';
+        document.getElementById("attendanceReportDiv").style.display = 'none';
+    } catch (error) {
+        console.error("Error viewing attendance records:", error);
+        alert("Failed to load attendance records. Please try again.");
+    }
+}
+
+// Fetch attendance report data from Firestore
+async function fetchAttendanceReport(classId) {
+    const attendanceCollectionRef = collection(firestore, `classesForTeachers/${classId}/attendance`);
+    const attendanceSnapshot = await getDocs(attendanceCollectionRef);
+
+    let totalClasses = 0;
+    let totalPresent = 0;
+    let totalAbsent = 0;
+
+    attendanceSnapshot.forEach(doc => {
+        const records = doc.data().records;
+        totalClasses++;
+        records.forEach(record => {
+            if (record.present) {
+                totalPresent++;
+            } else {
+                totalAbsent++;
+            }
+        });
+    });
+
+    return {
+        totalClasses,
+        totalPresent,
+        totalAbsent,
+    };
+}
+
+// Initialize by populating class buttons
+populateClassButtons();
+
+// Function to mark ----------------- attendance for the ------------- selected class----//
+// Function to populate class buttons for assignments
+async function populateClassButtonsForAssignments() {
+    const teacherEmail = localStorage.getItem('userEmail'); // Retrieve email from local storage
+    console.log("Global Teacher Email:", teacherEmail); // Log the global teacher email
+
+    const classesCollectionRef = collection(firestore, `classesForTeachers`);
+
+    try {
+        const classesSnapshot = await getDocs(classesCollectionRef);
+        console.log("Classes Snapshot:", classesSnapshot); // Log the snapshot
+
+        const classButtonsContainer = document.getElementById("classButtonsForAssighment"); // Updated ID
+        classButtonsContainer.innerHTML = ''; // Clear previous buttons
+
+        if (classesSnapshot.empty) {
+            console.warn("No classes found for this teacher.");
+            classButtonsContainer.innerHTML = '<p>No classes available for assignments.</p>'; // Show message if no classes
+            return; // Exit if there are no classes
+        }
+
+        classesSnapshot.forEach(doc => {
+            const classData = doc.data();
+            // Check if the class is associated with the current teacher
+            if (classData.teacherEmail === teacherEmail) {
+                const buttonContainer = document.createElement("div");
+                buttonContainer.className = "class-button"; // Optional: Add a class for styling
+
+                const button = document.createElement("button");
+                button.textContent = classData.name; // Display the class name
+                button.dataset.classId = doc.id; // Store the class ID
+
+                // Create a tooltip description element
+                const tooltip = document.createElement("span");
+                tooltip.textContent = classData.description || "No description available."; // Class description
+                tooltip.className = "class-tooltip"; // Add a class for styling
+
+                // Add mouseover and mouseout events to show/hide the tooltip
+                button.addEventListener('mouseover', () => {
+                    tooltip.style.display = 'block'; // Show tooltip on hover
+                });
+
+                button.addEventListener('mouseout', () => {
+                    tooltip.style.display = 'none'; // Hide tooltip when not hovering
+                });
+
+                // Add click event listener to the button
+                button.addEventListener('click', () => {
+                    // Handle class selection and populate assignments
+                    populateAssignments(doc.id); // Call function to populate assignments
+                    setActiveButton(button); // Set the active button state
+                });
+
+                // Append the button and tooltip to the container
+                buttonContainer.appendChild(button);
+                buttonContainer.appendChild(tooltip);
+                classButtonsContainer.appendChild(buttonContainer);
+            }
+        });
+
+        console.log(`${classButtonsContainer.children.length} classes loaded for assignments.`);
+    } catch (error) {
+        console.error("Error fetching classes:", error);
+        alert("Failed to load classes for assignments. Please check your connection and try again.");
+    }
+}
+
+// Function to set the active class button
+function setActiveButton(activeButton) {
+    const buttons = document.querySelectorAll("#classButtonsForAssighment button");
+    buttons.forEach(button => button.classList.remove("active")); // Remove active class from all buttons
+    activeButton.classList.add("active"); // Add active class to the clicked button
+}
+
+// Function to populate assignment buttons for a specific class
+async function populateAssignments(classId) {
+    const assignmentsCollectionRef = collection(firestore, `classesForTeachers/${classId}/assignments`);
+
+    try {
+        const assignmentsSnapshot = await getDocs(assignmentsCollectionRef);
+        const assignmentsList = document.getElementById("assignmentsList");
+        assignmentsList.innerHTML = ''; // Clear previous assignments
+
+        if (assignmentsSnapshot.empty) {
+            console.warn("No assignments found for this class.");
+            assignmentsList.innerHTML = '<p>No assignments available.</p>'; // Show message if no assignments
+            return; // Exit if there are no assignments
+        }
+
+        assignmentsSnapshot.forEach(doc => {
+            const assignmentData = doc.data();
+            const listItem = document.createElement("li");
+            listItem.textContent = `${assignmentData.title} - Due: ${assignmentData.dueDate} - Message ${assignmentData.description}`;
+
+            // Create an edit button
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.className = "edit-assignment"; // Add class for styling
+            editButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent triggering the list item's click event
+                document.getElementById('updateAssignmentId').value = doc.id;
+                document.getElementById('updateAssignmentTitle').value = assignmentData.title;
+                document.getElementById('updateAssignmentDescription').value = assignmentData.description || '';
+                document.getElementById('updateAssignmentDueDate').value = assignmentData.dueDate;
+            });
+
+            // Create a delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 0a.5.5 0 0 1 .5.5V1h5V.5a.5.5 0 0 1 1 0V1h1a.5.5 0 0 1 0 1H1a.5.5 0 0 1 0-1h1V.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M4.5 1h7a1 1 0 0 1 1 1v1H3V2a1 1 0 0 1 1-1z"/>
+                <path d="M1 4h14v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H3z"/>
+            </svg>`;
+            deleteButton.className = "delete-assignment"; // Add class for styling
+            deleteButton.addEventListener('click', async (event) => {
+                event.stopPropagation(); // Prevent triggering the list item's click event
+                await deleteAssignment(doc.id, classId); // Call delete function
+            });
+
+            // Append edit and delete buttons to list item
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+            assignmentsList.appendChild(listItem);
+        });
+
+        console.log(`${assignmentsList.children.length} assignments loaded.`);
+    } catch (error) {
+        console.error("Error fetching assignments:", error);
+        alert("Failed to load assignments. Please check your connection and try again.");
+    }
+}
+
+// Function to delete an assignment
+async function deleteAssignment(assignmentId, classId) {
+    const confirmation = confirm("Are you sure you want to delete this assignment?");
+    if (!confirmation) return; // Exit if not confirmed
+
+    try {
+        const assignmentDocRef = doc(firestore, `classesForTeachers/${classId}/assignments`, assignmentId);
+        await deleteDoc(assignmentDocRef);
+        alert("Assignment deleted successfully!");
+
+        // Refresh the assignments list
+        populateAssignments(classId);
+    } catch (error) {
+        console.error("Error deleting assignment:", error);
+        alert("Failed to delete assignment. Please try again.");
+    }
+}
+
+// Function to create an assignment
+async function createAssignment(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const title = document.getElementById('assignmentTitle').value;
+    const description = document.getElementById('assignmentDescription').value;
+    const dueDate = document.getElementById('assignmentDueDate').value;
+
+    // Get the currently selected class ID
+    const activeButton = document.querySelector("#classButtonsForAssighment button.active");
+    if (!activeButton) {
+        console.error("No active class button found.");
+        alert("Please select a class before creating an assignment.");
+        return; // Exit the function if no active button is found
+    }
+
+    const classId = activeButton.dataset.classId; // Get selected class ID
+
+    const assignment = {
+        title,
+        description,
+        dueDate,
+        createdAt: new Date().toISOString() // Timestamp for the assignment
+    };
+
+    try {
+        const assignmentsCollectionRef = collection(firestore, `classesForTeachers/${classId}/assignments`);
+        await addDoc(assignmentsCollectionRef, assignment);
+        alert("Assignment created successfully!");
+
+        // Refresh the assignments list
+        populateAssignments(classId);
+    } catch (error) {
+        console.error("Error creating assignment:", error);
+        alert("Failed to create assignment. Please try again.");
+    }
+}
+
+// Function to update an assignment
+async function updateAssignment(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const assignmentId = document.getElementById('updateAssignmentId').value;
+    const newTitle = document.getElementById('updateAssignmentTitle').value;
+    const newDescription = document.getElementById('updateAssignmentDescription').value;
+    const newDueDate = document.getElementById('updateAssignmentDueDate').value;
+
+    // Get the currently selected class ID
+    const activeButton = document.querySelector("#classButtonsForAssighment button.active");
+    if (!activeButton) {
+        console.error("No active class button found.");
+        alert("Please select a class before updating an assignment.");
+        return; // Exit if no active button is found
+    }
+
+    const classId = activeButton.dataset.classId; // Get selected class ID
+
+    try {
+        const assignmentDocRef = doc(firestore, `classesForTeachers/${classId}/assignments`, assignmentId);
+        await updateDoc(assignmentDocRef, {
+            title: newTitle || undefined,
+            description: newDescription || undefined,
+            dueDate: newDueDate || undefined
+        });
+        alert("Assignment updated successfully!");
+
+        // Refresh the assignments list
+        populateAssignments(classId);
+    } catch (error) {
+        console.error("Error updating assignment:", error);
+        alert("Failed to update assignment. Please try again.");
+    }
+}
+
+// Event listeners
+document.getElementById('createAssignmentForm').addEventListener('submit', createAssignment);
+document.getElementById('updateAssignmentForm').addEventListener('submit', updateAssignment);
+
+// Initialize by populating class buttons and assignments
+populateClassButtonsForAssignments();
+
+
+//-------------------marks section -----------------------//
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await delay(1000); // Delay for 1000 milliseconds (1 second)
+    await fetchClassesForTeacher();
+});
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchClassesForTeacher() {
+    const teacherUid = localStorage.getItem('teacherUid');
+
+    if (!teacherUid) {
+        console.error('No teacher UID found in local storage.');
+        return;
+    }
+
+    const db = getFirestore(app);
+    const classesRef = collection(db, 'classesForTeachers');
+    const q = query(classesRef, where('teacherUid', '==', teacherUid));
+
+    try {
+        const querySnapshot = await getDocs(q);
+        const classSelectMarks = document.getElementById('classSelectMarks');
+
+        // Clear previous classes
+        classSelectMarks.innerHTML = '';
+
+        if (querySnapshot.empty) {
+            console.log('No classes found for this teacher.');
+            const noClassesItem = document.createElement('li');
+            noClassesItem.textContent = 'No classes found.';
+            classSelectMarks.appendChild(noClassesItem);
+            return;
+        }
+
+        querySnapshot.forEach((doc) => {
+            const classData = doc.data();
+            const listItem = document.createElement('li');
+            listItem.textContent = `${classData.name}: ${classData.description}`;
+            listItem.style.cursor = 'pointer';
+
+            listItem.addEventListener('click', async () => {
+                await delay(500); // Optional delay before fetching students
+                fetchStudentsForClass(classData.enrolledStudents, classData.description);
+            });
+
+            classSelectMarks.appendChild(listItem);
+        });
+
+        console.log('Classes found:', classSelectMarks.childNodes);
+
+    } catch (error) {
+        console.error('Error fetching classes:', error);
+    }
+}
+
+async function fetchStudentsForClass(enrolledStudentUids, classDescription) {
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    
+    // Show the loading spinner
+    loadingSpinner.style.display = 'block';
+
+    const db = getFirestore(app);
+    const studentPromises = enrolledStudentUids.map(uid => {
+        const studentRef = doc(db, 'students', uid);
+        return getDoc(studentRef);
+    });
+
+    try {
+        const studentDocs = await Promise.all(studentPromises);
+        const studentList = studentDocs
+            .map(doc => doc.exists() ? { ...doc.data(), uid: doc.id } : null) // Ensure uid is included
+            .filter(Boolean);
+
+        // Create and display a pop-up or section with student details
+        displayStudentTable(studentList, classDescription);
+    } catch (error) {
+        console.error('Error fetching students:', error);
+    } finally {
+        // Hide the loading spinner
+        loadingSpinner.style.display = 'none';
+    }
+}
+
+
+function displayStudentTable(students, classDescription) {
+    const studentPopup = document.createElement('div');
+    studentPopup.className = 'student-popup';
+    studentPopup.style.position = 'fixed';
+    studentPopup.style.top = '50%';
+    studentPopup.style.left = '50%';
+    studentPopup.style.transform = 'translate(-50%, -50%)';
+    studentPopup.style.backgroundColor = 'white';
+    studentPopup.style.padding = '20px';
+    studentPopup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    studentPopup.style.zIndex = '1000';
+
+    // Create header with class description
+    const header = document.createElement('h2');
+    header.textContent = `Students for Class: ${classDescription}`;
+    studentPopup.appendChild(header);
+
+    // Create sub-header for test selection
+    const testSelection = document.createElement('select');
+    const tests = ['Test 1', 'Test 2', 'Test 3', 'Exam Mock', 'Exam Final', 'Other'];
+    tests.forEach(test => {
+        const option = document.createElement('option');
+        option.value = test;
+        option.textContent = test;
+        testSelection.appendChild(option);
+    });
+    studentPopup.appendChild(testSelection);
+
+    // Create table for student details
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.borderCollapse = 'collapse';
+
+    // Add table headers
+    const headerRow = document.createElement('tr');
+    const headers = ['Image', 'First Name', 'Last Name', 'Description', 'Marks', 'Actions'];
+    headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        th.style.border = '1px solid #ddd';
+        th.style.padding = '8px';
+        th.style.textAlign = 'left';
+        headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    // Add student data to the table
+    students.forEach(student => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td><img src="${student.imageUrl}" alt="${student.firstName} ${student.lastName}" style="width: 50px; height: 50px; border-radius: 50%;"></td>
+            <td>${student.firstName}</td>
+            <td>${student.lastName}</td>
+            <td>${student.description}</td>
+            <td>
+                <input type="number" min="0" max="100" style="width: 60px;" id="marks-${student.uid}" placeholder="Marks">
+            </td>
+            <td>
+                <button onclick="editMarks('${student.uid}')" title="Edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-1.646 1.646L10.793.146l1.353-1.353zM2 12.414V14h1.586l8.732-8.732-1.586-1.586L2 12.414z"/>
+                    </svg>
+                </button>
+            </td>
+        `;
+
+        row.style.border = '1px solid #ddd';
+        row.style.padding = '8px';
+        table.appendChild(row);
+    });
+
+    // Create buttons for closing and submitting marks
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.justifyContent = 'space-between';
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.onclick = () => {
+        document.body.removeChild(studentPopup);
+    };
+
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit Marks';
+    submitButton.onclick = () => {
+        students.forEach(student => {
+            const marksInput = document.getElementById(`marks-${student.uid}`);
+            const marks = marksInput.value;
+            if (marks) {
+                submitMarks(student.uid, testSelection.value, classDescription);
+            } else {
+                alert(`Please enter marks for ${student.firstName} ${student.lastName}.`);
+            }
+        });
+    };
+
+    buttonContainer.appendChild(closeButton);
+    buttonContainer.appendChild(submitButton);
+    studentPopup.appendChild(table);
+    studentPopup.appendChild(buttonContainer);
+    document.body.appendChild(studentPopup);
+}
+
+async function submitMarks(studentUid, testType, classDescription) {
+    if (!studentUid) {
+        console.error('studentUid is undefined');
+        alert('Failed to submit marks: Student UID is undefined.');
+        return;
+    }
+
+    const marksInput = document.getElementById(`marks-${studentUid}`);
+    const marks = marksInput.value;
+
+    // Validate marks are within the range of 0 to 100
+    if (marks === '' || marks < 0 || marks > 100) {
+        alert('Please enter marks between 0 and 100.');
+        return;
+    }
+
+    console.log(`Submitting marks for student ${studentUid}: ${marks} for ${testType}`);
+
+    try {
+        const db = getFirestore(app); // Initialize Firestore
+        const marksRef = collection(db, 'marks');
+
+        // Create a new document with the student's marks
+        await addDoc(marksRef, {
+            studentUid: studentUid,
+            marks: Number(marks),
+            testType: testType,
+            classDescription: classDescription,
+            submittedAt: new Date() // Add a timestamp for when the marks were submitted
+        });
+
+        alert('Marks submitted successfully!');
+        marksInput.value = ''; // Clear the input field after submission
+    } catch (error) {
+        console.error('Error submitting marks:', error);
+        alert('Failed to submit marks. Please try again later.');
+    }
+}
+
+function editMarks(studentUid) {
+    const marksInput = document.getElementById(`marks-${studentUid}`);
+    marksInput.focus();
+}
+
+// Call the function to fetch classes when needed
+fetchClassesForTeacher();
+
+
+
+//+++++++++++++++++++++++++notifications+++++++++++++++++++++-----------------//
+
+const db = getFirestore(app);
+
+document.addEventListener('DOMContentLoaded', async function() {
+    // DOM Elements
+    const refreshNotificationsBtn = document.getElementById('refreshNotificationsBtn');
+    const sendNotificationBtn = document.getElementById('sendNotificationBtn');
+    const notificationsList = document.getElementById('notificationsList');
+    const notificationModal = document.getElementById('notificationModal');
+    const closeNotificationModal = document.getElementById('closeNotificationModal');
+    const classSelect = document.getElementById('classSelect');
+    const notificationMessage = document.getElementById('notificationMessage');
+    const sendNotificationForm = document.getElementById('sendNotificationForm');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    // Load classes into the select dropdown
+    async function fetchClasses() {
+        const classesSnapshot = await getDocs(collection(db, 'classesForTeachers'));
+        classesSnapshot.forEach(doc => {
+            const classData = doc.data();
+            const option = document.createElement('option');
+            option.value = doc.id; // Store class ID
+            option.textContent = `${classData.name}: ${classData.description}`;
+            classSelect.appendChild(option);
+        });
+    }
+
+    // Assuming you have a counter element in your HTML like this:
+    const notificationCounter = document.getElementById('notificationCounter');
+
+    // Load notifications for the selected class
+    async function loadNotifications() {
+        notificationsList.innerHTML = ''; // Clear existing notifications
+        const selectedClassId = classSelect.value;
+
+        const notificationsSnapshot = await getDocs(collection(db, 'classesForTeachers', selectedClassId, 'notifications'));
+
+        // Update the notification counter
+        notificationCounter.textContent = notificationsSnapshot.size; // Set the counter to the number of notifications
+
+        notificationsSnapshot.forEach(doc => {
+            const notificationData = doc.data();
+            const notificationDiv = document.createElement('div');
+            notificationDiv.className = 'notification'; // Add a class for styling
+
+            // Create a trash icon for deletion
+            const trashIcon = document.createElement('span');
+            trashIcon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 0a.5.5 0 0 1 .5.5V1h5V.5a.5.5 0 0 1 1 0V1h2a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2V.5a.5.5 0 0 1 .5-.5zM4 2h8v1H4V2zm1 1h6a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 1v10h4V4H6z"/>
+                </svg>
+            `;
+
+            // Add event listener for deleting the notification
+            trashIcon.addEventListener('click', async () => {
+                await deleteNotification(selectedClassId, doc.id);
+                loadNotifications(); // Reload notifications to update the counter
+            });
+
+            // Check if expiration is defined
+            if (notificationData.expiration) {
+                const expirationDate = new Date(notificationData.expiration.toDate()); // Convert Firestore timestamp to Date
+
+                // Format the expiration date
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                const formattedExpiration = expirationDate.toLocaleString(undefined, options);
+
+                notificationDiv.innerHTML = `${notificationData.className}: ${notificationData.message} <span class="expiration">(Expires: ${formattedExpiration})</span>`;
+            } else {
+                notificationDiv.textContent = `${notificationData.className}: ${notificationData.message} (Expiration not set)`;
+            }
+
+            // Append trash icon to notification div
+            notificationDiv.appendChild(trashIcon);
+            notificationsList.appendChild(notificationDiv);
+        });
+    }
+
+    // Function to delete a notification
+    async function deleteNotification(classId, notificationId) {
+        try {
+            await deleteDoc(doc(db, 'classesForTeachers', classId, 'notifications', notificationId));
+            await loadNotifications(); // Refresh notifications after deletion
+        } catch (error) {
+            console.error("Error deleting notification: ", error);
+        }
+    }
+
+    // Send new notification
+    async function sendNotification(event) {
+        event.preventDefault();
+        const selectedClassId = classSelect.value;
+        const message = notificationMessage.value;
+
+        loadingSpinner.style.display = 'block'; // Show the spinner
+
+        try {
+            const classDoc = await getDoc(doc(db, 'classesForTeachers', selectedClassId));
+            if (classDoc.exists()) {
+                const classData = classDoc.data();
+                const expirationTime = new Date();
+                expirationTime.setHours(expirationTime.getHours() + 24); // Set expiration to 24 hours later
+
+                await addDoc(collection(db, 'classesForTeachers', selectedClassId, 'notifications'), {
+                    className: classData.name,
+                    message: message,
+                    timestamp: serverTimestamp(),
+                    expiration: expirationTime // Add expiration timestamp
+                });
+                notificationMessage.value = ''; // Clear message input
+                await loadNotifications(); // Refresh notifications
+                closeModal();
+            }
+        } catch (error) {
+            console.error("Error sending notification: ", error);
+        } finally {
+            loadingSpinner.style.display = 'none'; // Hide the spinner
+        }
+    }
+
+    // Close modal
+    function closeModal() {
+        notificationModal.style.display = 'none';
+    }
+
+    // Event listeners
+    refreshNotificationsBtn.addEventListener('click', loadNotifications);
+    sendNotificationBtn.addEventListener('click', () => {
+        notificationModal.style.display = 'block';
+    });
+    closeNotificationModal.addEventListener('click', closeModal);
+    sendNotificationForm.addEventListener('submit', sendNotification);
+
+    // Load classes and notifications on initial load
+    await fetchClasses();
+    await loadNotifications();
+});
+
+</script>
+
+
+</body>
+</html>
+

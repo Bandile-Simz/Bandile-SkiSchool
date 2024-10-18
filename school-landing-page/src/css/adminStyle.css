@@ -1,0 +1,563 @@
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        position: fixed;
+        left: -250px;
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        left: 0;
+    }
+
+    #page-content-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper.toggled {
+        margin-left: 250px;
+    }
+}
+
+/* Basic styles for both tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 0.75em;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+td button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+td i {
+    font-size: 1.2em;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 0.5em;
+        font-size: 0.9em;
+    }
+}
+
+/* Mobile styling for even smaller screens */
+@media (max-width: 576px) {
+
+    th,
+    td {
+        padding: 0.4em;
+        font-size: 0.8em;
+    }
+
+    td i {
+        font-size: 1em;
+    }
+}
+
+/* Additional utility classes for customization */
+.text-blue-500 {
+    color: #007bff;
+}
+
+.text-red-500 {
+    color: #dc3545;
+}
+
+.text-green-500 {
+    color: #28a745;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.table-auto {
+    table-layout: auto;
+}
+
+.content-section {
+    padding: 20px;
+}
+
+.class-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.text-midnight-blue {
+    color: #191970;
+    /* Midnight Blue */
+}
+
+.bg-smoke-white {
+    background-color: #F5F5F5;
+    /* Smoke White */
+}
+
+.hover\:bg-blue-100:hover {
+    background-color: #ebf8ff;
+    /* Light Blue */
+}
+
+.hover\:bg-red-600:hover {
+    background-color: #c53030;
+    /* Dark Red */
+}
+
+/* Additional styles for button hover effects */
+button {
+    transition: background-color 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.class-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.class-input {
+    flex: 1;
+    padding: 0.75rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.add-class-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-class-btn:hover {
+    background-color: #0056b3;
+}
+
+.class-list {
+    margin-top: 1rem;
+}
+
+.class-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.class-item span {
+    font-size: 1.1rem;
+}
+
+.edit-class,
+.delete-class {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-class {
+    background-color: #28a745;
+    color: white;
+}
+
+.edit-class:hover {
+    background-color: #218838;
+}
+
+.delete-class {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-class:hover {
+    background-color: #c82333;
+}
+
+.editable-input {
+    background-color: #f0f8ff;
+    /* Light blue background */
+    border: 2px solid #007bff;
+    /* Blue border */
+    border-radius: 4px;
+    /* Rounded corners */
+}
+/* Custom styles for the events section */
+#events {
+padding: 2rem;
+}
+
+#events h2 {
+border-bottom: 2px solid #333;
+padding-bottom: 1rem;
+}
+
+.bg-white {
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.bg-white:hover {
+transform: translateY(-5px);
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.text-midnight-blue {
+color: #1a1a2e; /* Example midnight blue color */
+}
+.type-section {
+margin-bottom: 24px;
+}
+
+.gallery-item {
+position: relative;
+overflow: hidden;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+width: 100%; /* Ensure the image takes full width */
+height: 150px; /* Fixed height to maintain aspect ratio */
+object-fit: cover; /* Cover the container while preserving aspect ratio */
+display: block;
+transition: transform 0.5s ease; /* Smooth transition for scaling */
+}
+
+.gallery-item:hover {
+transform: translateY(-5px); /* Lift effect on hover */
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.gallery-item:hover img {
+transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.p-2 {
+padding: 0.5rem; /* Spacing for image titles */
+}
+
+.text-center {
+text-align: center; /* Center the title text */
+}
+
+
+body {
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#sidebar-wrapper {
+    width: 250px;
+    background-color: #343a40;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+    background-color: #495057;
+    width: 100%;
+}
+
+#sidebar-wrapper .list-group-item {
+    color: white;
+    background-color: #343a40;
+    width: 100%;
+    text-align: center;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #495057;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    transition: all 0.3s ease;
+    margin-left: 250px;
+}
+
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    /* Black background with opacity */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Close button (X) */
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form input styling */
+.t form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Label styling */
+.t form label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Form heading */
+.t form h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Form button styles */
+.t form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Button hover state */
+.t form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+
+    form h2 {
+        font-size: 20px;
+    }
+
+    form button {
+        font-size: 16px;
+    }
+}
+
+.gallery-item {
+position: relative;
+overflow: hidden;
+border-radius: 0.5rem; /* Rounded corners */
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensure images cover the area */
+transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+transform: scale(1.05); /* Scale effect on hover */
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+.gallery-item h4 {
+margin-top: 0.5rem;
+text-align: center;
+font-size: 1.1rem;
+color: #333; /* Text color */
+}
+
+.nav-button {
+background-color: #4CAF50; /* Green */
+color: white;
+padding: 10px 15px;
+margin: 5px;
+border: none;
+cursor: pointer;
+font-size: 16px;
+}
+
+.nav-button:hover {
+background-color: #45a049;
+}
+
+#current-image-display {
+text-align: center;
+}
+
+#image-upload-form {
+margin-bottom: 20px;
+padding: 20px;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#image-upload-form label {
+display: block;
+margin-bottom: 5px;
+}
+
+#image-upload-form input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+#image-upload-form button {
+padding: 10px 15px;
+background-color: #007bff;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+#image-upload-form button:hover {
+background-color: #0056b3;
+}
+
+

@@ -1,0 +1,1306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+  <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Student Dashboard</title>
+  <style>
+   /* General Body Styles */
+   body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #007BFF;
+  padding-top: 20px;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.sidebar a {
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #E0E0E0;
+  display: block;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar a:hover {
+  color: #ffffff;
+  background-color: #0056b3;
+  border-radius: 5px;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 250px; /* Match the sidebar width */
+    padding: 20px;
+}
+
+/* Profile Header Styles */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #45dc66;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-info {
+    flex: 1;
+    margin-left: 20px;
+}
+
+/* Profile Actions */
+.profile-actions button {
+    background-color: #4A90E2;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Added transform */
+}
+
+.profile-actions button:hover {
+    background-color: #357ABD;
+    transform: translateY(-2px); /* Lift effect */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+    color: #121212;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.3s;
+}
+
+/* Animation for modal opening */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff0000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    flex: 1;
+    margin: 0 5px;
+}
+
+button[type="button"] {
+    background-color: #f44336;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px); /* Lift effect */
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        margin-left: 200px;
+    }
+    
+    .sidebar {
+        width: 200px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Section Styles */
+.section {
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    text-align: center;
+    margin: 20px 0;
+    margin-left: 268px; /* Match the sidebar width */
+    margin-right: 10px; /* Match the sidebar width */
+}
+
+.section.active {
+    display: block;
+    opacity: 1;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    color: #4A90E2;
+}
+
+.section p {
+    margin-bottom: 15px;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section li {
+    margin: 10px 0;
+    color: #333;
+}
+
+
+#class-table {
+    width: 80%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#class-table th, #class-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#class-table th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+#class-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    #class-table {
+        width: 100%;
+    }
+}
+
+/* Attendance Table Styles */
+#attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#attendance-table th,
+#attendance-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+#attendance-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+#attendance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#attendance-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    #attendance-table {
+        font-size: 14px;
+    }
+}
+
+/* Assignments Section Styles */
+#assignments {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    th, td {
+        padding: 8px;
+    }
+}
+/* Notifications Section Styles */
+#notifications {
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    margin: 20px 0; /* Outer spacing */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+/* Header Styles */
+#notifications h2 {
+    color: #333; /* Dark text color */
+    font-size: 24px; /* Header size */
+    margin-bottom: 20px; /* Spacing below header */
+}
+
+/* Card Styles */
+.notification-card {
+    background-color: #fff; /* White background for cards */
+    border-radius: 8px; /* Rounded corners for cards */
+    padding: 15px; /* Inner spacing for cards */
+    margin-bottom: 15px; /* Spacing between cards */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover */
+}
+
+/* Hover effect for cards */
+.notification-card:hover {
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Strong text styles */
+.notification-card strong {
+    color: #007BFF; /* Color for strong text (like teacher names) */
+}
+
+/* Notification Title */
+.notification-title {
+    color: #007BFF; /* Teacher notification title color */
+    font-size: 18px; /* Title size */
+    margin-bottom: 10px; /* Spacing below title */
+}
+
+/* Notification Message */
+.notification-message {
+    color: #333; /* Default message color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #notifications {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    #notifications h2 {
+        font-size: 20px; /* Smaller header size */
+    }
+
+    .notification-card {
+        padding: 10px; /* Adjust card padding */
+    }
+
+    .notification-title {
+        font-size: 16px; /* Smaller title size */
+    }
+
+    .notification-message {
+        font-size: 14px; /* Smaller message size */
+    }
+}
+
+@media (max-width: 480px) {
+    #notifications {
+        padding: 10px; /* Further adjust padding */
+    }
+
+    #notifications h2 {
+        font-size: 18px; /* Even smaller header size */
+    }
+
+    .notification-card {
+        padding: 8px; /* Further adjust card padding */
+        margin-bottom: 10px; /* Adjust margin */
+    }
+
+    .notification-title {
+        font-size: 14px; /* Further smaller title size */
+    }
+
+    .notification-message {
+        font-size: 12px; /* Further smaller message size */
+    }
+}
+
+
+
+
+
+  </style>
+  
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Student Panel</h2>
+    <a href="#" onclick="showSection('overview')">Dashboard</a>
+    <a href="#" onclick="showSection('my-classes')">My Classes</a>
+    <a href="#" onclick="showSection('attendance')">Attendance</a>
+    <a href="#" onclick="showSection('assignments')">Assignments</a>
+    <a href="#" onclick="showSection('grades')">Grades</a>
+    <a href="#" onclick="showSection('notifications')">Notifications</a>
+  </div>
+
+  <div class="main-content">
+    <div id="loading-spinner" style="display:none;">Loading...</div>
+
+    <div class="profile-header">
+        <img id="profile-picture" src="profile-picture.jpg" alt="Profile Picture">
+        <div class="profile-info">
+            <h2 id="student-name">Jane Smith</h2>
+            <p id="student-email">Email: jane.smith@example.com</p>
+            <p class="student-grade">Grade: Not available</p>
+            <p id="student-gender">Gender: Not available</p>
+        </div>
+        <div class="profile-actions">
+            <button id="edit-profile">Edit Profile</button>
+            <button id="logout">Logout</button>
+        </div>
+    </div>
+    <!-- code for the profile editing start-->
+    <div id="edit-profile-modal" class="modal">
+      <div class="modal-content">
+          <span id="close-modal" class="close">&times;</span>
+          <h2>Edit Profile</h2>
+          <form id="edit-profile-form">
+  
+              <label for="edit-email">Email:</label>
+              <input type="email" id="edit-email" required>
+  
+              <label for="edit-phone">Phone Number:</label>
+              <input type="tel" id="edit-phone" required>
+
+              <label for="edit-description">Description:</label>
+              <textarea id="edit-description" rows="4"></textarea>
+  
+              <label for="edit-image">Profile Image:</label>
+              <input type="file" id="edit-image" accept="image/*">
+  
+              <div class="modal-buttons">
+                  <button type="button" id="cancel-edit">Cancel</button>
+                  <button type="button" id="save-profile">Save</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  
+  
+    <!-- code for the profile editing end -->
+    </div>
+    
+    <div id="overview" class="section active">
+      <h2>Dashboard</h2>
+      <p>Welcome to the student dashboard! Here you can view your classes, assignments, grades, and attendance.</p>
+      <div class="studentTimeTable"></div>
+   </div>
+    
+   <div id="my-classes" class="section">
+    <h2>My Classes</h2>
+    <p>View your class schedules and details.</p>
+    <table id="class-table">
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Description</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Class data will be populated here -->
+        </tbody>
+    </table>
+    
+  </div>
+  
+    
+  <div id="attendance" class="section">
+    <h2>Attendance</h2>
+    <p>Track your attendance records.</p>
+    <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Description</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Attendance data will be populated here -->
+        </tbody>
+    </table>
+</div>
+
+
+    
+<div id="assignments" class="section">
+    <h2>Assignments</h2>
+    <p>View and submit your assignments.</p>
+    <ul>
+        <!-- Assignments will be populated here -->
+    </ul>
+</div>
+
+    
+    <div id="grades" class="section">
+      <h2>Grades</h2>
+      <p>View your grades for each class.</p>
+     
+    </div>
+    
+    <div id="notifications" class="section">
+        <h2>Notifications</h2>
+        <p>View important notifications from your teachers.</p>
+        <!-- Notifications will be dynamically injected here -->
+    </div>
+    
+
+  <script>
+       function showSection(sectionId) {
+      // First, remove 'active' class from all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Get the element with the specified sectionId
+      const sectionElement = document.getElementById(sectionId);
+
+      // Check if the element exists before attempting to modify its classList
+      if (sectionElement) {
+        sectionElement.classList.add('active');
+      } else {
+        console.warn(`Element with id '${sectionId}' not found.`);
+      }
+    }
+  </script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs, setDoc, addDoc, doc, writeBatch, getDoc, deleteDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA1biSer_PoTi1jOPQLr8hMJEo8lzcJDaM",
+    authDomain: "school-management-1dac2.firebaseapp.com",
+    projectId: "school-management-1dac2",
+    storageBucket: "school-management-1dac2.appspot.com",
+    messagingSenderId: "545480440389",
+    appId: "1:545480440389:web:84f127bb00c44a473ac12c",
+    measurementId: "G-LELWKCKHN7",
+    databaseURL: "https://school-management-1dac2.firebaseio.com"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+const storage = getStorage(app); // Initialize Firebase Storage
+
+// ---------------------------student profile ------------------ //
+
+ // Function to load student data
+ async function loadStudentData() {
+            // Show spinner
+            document.getElementById("loading-spinner").style.display = "block";
+
+            // Retrieve userId and userEmail from local storage
+            const userId = localStorage.getItem("userId");
+            const userEmail = localStorage.getItem("userEmail");
+            console.log(`Retrieving data for student with userId: ${userId} and userEmail: ${userEmail}`);
+
+            if (!userId && !userEmail) {
+                alert("No user ID or email found in local storage.");
+                document.getElementById("loading-spinner").style.display = "none";
+                return;
+            }
+
+            try {
+                let studentSnapshot;
+
+                // First try to find the student by userId
+                if (userId) {
+                    const studentDocRef = doc(firestore, "students", userId);
+                    studentSnapshot = await getDoc(studentDocRef);
+                }
+
+                // If student not found by userId, try finding by userEmail
+                if (!studentSnapshot || !studentSnapshot.exists()) {
+                    if (userEmail) {
+                        const studentQueryRef = collection(firestore, "students");
+                        const emailQuery = query(studentQueryRef, where("email", "==", userEmail));
+                        const emailSnapshot = await getDocs(emailQuery);
+
+                        if (!emailSnapshot.empty) {
+                            studentSnapshot = emailSnapshot.docs[0]; // Get the first document found
+                        }
+                    }
+                }
+
+                // Check if we found a valid student
+                if (studentSnapshot && studentSnapshot.exists()) {
+                    const studentData = studentSnapshot.data();
+                    console.log(`Found student: ${studentData.firstName} ${studentData.lastName}`);
+                    console.log(`Student UID: ${studentSnapshot.id}`);
+                    
+                    // Store UID in the global variable
+                    const studentUid = studentSnapshot.id;
+
+                    // Use default image if imageUrl is not available
+                    const imageUrl = studentData.imageUrl || "images/profile-default.jpg";
+
+                    // Display student information
+                    document.getElementById("profile-picture").src = imageUrl;
+                    document.getElementById("student-name").textContent = `${studentData.firstName || "First name not available"} ${studentData.lastName || "Last name not available"}`;
+                    document.getElementById("student-email").textContent = `Email: ${studentData.email || "Not available"}`;
+                    document.querySelector(".student-grade").textContent = `Class Name: ${studentData.className || "Not available"}`;
+                    document.getElementById("student-gender").textContent = `Gender: ${studentData.gender || "Not available"}`;
+
+                    // Store the student UID in the data attribute and local storage
+                    document.getElementById("edit-profile").dataset.uid = studentUid;
+                    localStorage.setItem('studentUid', studentUid);
+
+                    // Now print the global studentUid
+                    console.log(`Global Student UID after assignment: ${studentUid}`);
+
+                    // Load student classes after the student data is loaded
+                    loadStudentClasses(); // Call the function to load classes
+                } else {
+                    alert("No student found with the provided userId or userEmail.");
+                }
+            } catch (error) {
+                console.error("Error retrieving student data:", error);
+                alert("Failed to load student data. Please try again.");
+            } finally {
+                // Hide spinner
+                document.getElementById("loading-spinner").style.display = "none";
+            }
+        }
+
+        // Load student data when the page loads
+        window.onload = loadStudentData;
+
+// Logout functionality
+document.getElementById("logout").addEventListener("click", function() {
+    localStorage.clear();
+    window.location.href = "index.html";
+});
+
+//-----------------------------edit profile code-----------------------------//
+
+// Function to get student data by UID
+async function getStudentDataByUid(uid) {
+    const docRef = doc(firestore, "students", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data();
+    } else {
+        console.error("No such document!");
+        return null;
+    }
+}
+
+// Function to open the edit profile modal
+async function openEditProfileModal() {
+    const modal = document.getElementById("edit-profile-modal");
+    const closeModalButton = document.getElementById("close-modal");
+
+    // Populate the form fields with current student data
+    const studentUid = localStorage.getItem('studentUid');
+    if (studentUid) {
+        const studentData = await getStudentDataByUid(studentUid); // Await the async function
+
+        // Populate the form fields
+        document.getElementById("edit-email").value = studentData.email || ""; // Populate email
+        document.getElementById("edit-phone").value = studentData.phone || ""; // Populate phone
+        document.getElementById("edit-description").value = studentData.description || ""; // If description exists
+    }
+
+    // Display the modal
+    modal.style.display = "block";
+
+    // Close the modal when the close button is clicked
+    closeModalButton.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // Close the modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+}
+
+// Function to save the updated student profile
+async function saveProfile() {
+    const studentUid = localStorage.getItem('studentUid');
+    
+    const email = document.getElementById("edit-email").value;
+    const phone = document.getElementById("edit-phone").value;
+    const description = document.getElementById("edit-description").value;
+    const imageInput = document.getElementById("edit-image");
+    let imageUrl;
+
+    // Handle image upload if a new image is selected
+    if (imageInput.files.length > 0) {
+        const file = imageInput.files[0];
+        const imageRef = storageRef(storage, `profileImages/${studentUid}/${file.name}`); // Change ref to storageRef
+        await uploadBytes(imageRef, file);
+        imageUrl = await getDownloadURL(imageRef); // Get the URL of the uploaded image
+    }
+
+    try {
+        // Update student profile in Firestore
+        await updateDoc(doc(firestore, "students", studentUid), {
+            email: email, // Update email
+            phone: phone, // Update phone number
+            description: description,
+            imageUrl: imageUrl || null // Only update if a new image was uploaded
+        });
+        alert("Profile updated successfully!");
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile. Please try again.");
+    } finally {
+        // Close the modal after saving
+        document.getElementById("edit-profile-modal").style.display = "none";
+    }
+}
+
+// Attach event listeners
+document.getElementById("edit-profile").addEventListener("click", function() {
+    openEditProfileModal();
+});
+
+document.getElementById("save-profile").onclick = saveProfile;
+document.getElementById("cancel-edit").onclick = function() {
+    document.getElementById("edit-profile-modal").style.display = "none";
+};
+
+//-------------------classes loading function-----------------------//
+
+async function loadStudentClasses() {
+    // Get the student UID from local storage
+    const studentUid = localStorage.getItem('studentUid');
+    if (!studentUid) {
+        console.error("Student UID not found in local storage.");
+        return;
+    }
+
+    const classesRef = collection(firestore, "classesForTeachers"); // Reference to your Firestore collection
+    const q = query(classesRef, where("enrolledStudents", "array-contains", studentUid)); // Query for classes
+
+    try {
+        const querySnapshot = await getDocs(q);
+        const classTable = document.getElementById('class-table'); // Reference to your table
+        const classListBody = classTable.getElementsByTagName('tbody')[0]; // Get the tbody element
+        classListBody.innerHTML = ""; // Clear existing classes
+
+        // Loop through each class document
+        for (const docSnapshot of querySnapshot.docs) {
+            const classData = docSnapshot.data();
+            const teacherUid = classData.teacherUid; // Assuming teacherUid is stored in the class document
+
+            // Fetch the teacher's name
+            const teacherDocRef = doc(firestore, "teachers", teacherUid);
+            const teacherSnapshot = await getDoc(teacherDocRef);
+
+            let teacherName = "Unknown"; // Default value if teacher is not found
+            if (teacherSnapshot.exists()) {
+                const teacherData = teacherSnapshot.data();
+                teacherName = `${teacherData.firstName} ${teacherData.lastName}`; // Adjust based on your data structure
+            }
+
+            // Create a new row for the table
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${classData.name}</td>
+                <td>${classData.description || "No description available"}</td>
+                <td>${teacherName}</td>
+            `;
+            classListBody.appendChild(row);
+        }
+    } catch (error) {
+        console.error("Error fetching classes: ", error);
+    }
+}
+
+//------------------attendance tracking --------------------------//
+async function loadStudentAttendance() {
+    // Get the student UID from local storage
+    const studentUid = localStorage.getItem('studentUid');
+    if (!studentUid) {
+        console.error("Student UID not found in local storage.");
+        return;
+    }
+
+    const attendanceSection = document.getElementById('attendance');
+    const attendanceTableBody = document.getElementById('attendance-table').querySelector('tbody');
+    attendanceTableBody.innerHTML = ""; // Clear existing attendance records
+
+    // Reference to the classesForTeachers collection
+    const classesRef = collection(firestore, "classesForTeachers");
+    const q = query(classesRef, where("enrolledStudents", "array-contains", studentUid)); // Query for classes
+
+    try {
+        const querySnapshot = await getDocs(q);
+
+        // Loop through each class document
+        for (const classDoc of querySnapshot.docs) {
+            const classData = classDoc.data();
+            const classId = classDoc.id; // Get the ID of the class document
+            const className = classData.name; // Assuming class name is stored in 'name' field
+            const description = classData.description; // Assuming description is stored in 'description' field
+
+            // Construct the path to the student's attendance record
+            const attendanceRecordRef = doc(firestore, `classesForTeachers/${classId}/attendance/${studentUid}`);
+
+            // Fetch the attendance record
+            const attendanceSnapshot = await getDoc(attendanceRecordRef);
+
+            let attendance = "No attendance record"; // Default value if attendance not found
+            if (attendanceSnapshot.exists()) {
+                const attendanceData = attendanceSnapshot.data();
+                
+                // Initialize an array to store attendance details
+                attendance = attendanceData.records.map(record => {
+                    return {
+                        date: record.date || "No date recorded",
+                        present: record.present !== undefined ? record.present : "No present status recorded"
+                    };
+                });
+
+                // Example of how you might log or display the attendance data
+                attendance.forEach(att => {
+                    console.log(`Date: ${att.date}, Present: ${att.present}`);
+                });
+            } else {
+                console.log("No attendance record found for this class.");
+            }
+
+            // Create a table row with class name, description, and attendance
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${className}</td>
+                <td>${description}</td>
+                <td>${attendance}%</td>
+            `;
+            attendanceTableBody.appendChild(row); // Append the row to the table body
+        }
+    } catch (error) {
+        console.error("Error loading attendance data: ", error);
+    }
+}
+
+// Call the function to load the attendance with a delay
+setTimeout(() => {
+    loadStudentAttendance();
+}, 1000); // Delay of 1000 milliseconds (1 second)
+
+//-------------------show student assighment as for a class------------------------//
+async function displayAssignmentsForStudent() {
+    const studentUid = localStorage.getItem('studentUid'); // Retrieve student UID from local storage
+    if (!studentUid) {
+        console.error("No student UID found in local storage.");
+        alert("Please log in as a student to view assignments.");
+        return; // Exit if no student UID is found
+    }
+
+    const classesCollectionRef = collection(firestore, `classesForTeachers`);
+
+    try {
+        const classesSnapshot = await getDocs(classesCollectionRef);
+        const assignmentsSection = document.getElementById("assignments");
+        assignmentsSection.innerHTML = '<h2>Assignments</h2><p>View and submit your assignments.</p>'; // Clear previous content
+
+        if (classesSnapshot.empty) {
+            assignmentsSection.innerHTML += '<p>No classes found.</p>'; // Handle no classes case
+            return;
+        }
+
+        // Loop through each class
+        for (const classDoc of classesSnapshot.docs) {
+            const classData = classDoc.data();
+            const classId = classDoc.id;
+
+            // Check if the student UID is in the enrolledStudents array
+            if (classData.enrolledStudents && classData.enrolledStudents.includes(studentUid)) {
+                const className = classData.name;
+                const classDescription = classData.description || "No description available."; // Get class description
+
+                // Display class name and description
+                assignmentsSection.innerHTML += `<h3>${className}: ${classDescription}</h3>`;
+
+                // Fetch assignments for the current class
+                const assignmentsCollectionRef = collection(firestore, `classesForTeachers/${classId}/assignments`);
+                const assignmentsSnapshot = await getDocs(assignmentsCollectionRef);
+
+                if (assignmentsSnapshot.empty) {
+                    assignmentsSection.innerHTML += '<p>No assignments found.</p>'; // Handle no assignments case
+                } else {
+                    // Start a table for assignments
+                    assignmentsSection.innerHTML += `<table>
+                        <thead>
+                            <tr>
+                                <th>Assignment Title</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                    assignmentsSnapshot.forEach(assignmentDoc => {
+                        const assignmentData = assignmentDoc.data();
+                        assignmentsSection.innerHTML += `
+                            <tr>
+                                <td>${assignmentData.title}</td>
+                                <td>${assignmentData.dueDate}</td>
+                            </tr>`;
+                    });
+
+                    assignmentsSection.innerHTML += `</tbody>
+                        </table>`; // Close the table
+                }
+            }
+        }
+        
+        console.log("Assignments for student displayed.");
+    } catch (error) {
+        console.error("Error fetching assignments:", error);
+        alert("Failed to load assignments. Please check your connection and try again.");
+    }
+}
+
+// Call this function to display assignments for the student with a delay
+setTimeout(() => {
+    displayAssignmentsForStudent();
+}, 4000); // Delay of 1000 milliseconds (1 second)
+
+// ------------------------- Marks section start 00------------------------//
+async function fetchStudentMarks() {
+    const studentUid = localStorage.getItem('studentUid');
+
+    if (!studentUid) {
+        console.error('No student UID found in local storage.');
+        return;
+    }
+
+    const db = getFirestore(app);
+    const marksRef = collection(db, 'marks'); // Assuming 'marks' is the collection name
+    const q = query(marksRef, where('studentUid', '==', studentUid));
+
+    try {
+        const querySnapshot = await getDocs(q);
+        const gradesSection = document.getElementById('grades');
+
+        // Clear previous grades
+        gradesSection.innerHTML = `<h2>Performance Record</h2><p>View your grades for each class.</p>`;
+        
+        if (querySnapshot.empty) {
+            const noGradesItem = document.createElement('p');
+            noGradesItem.textContent = 'No grades found for this student.';
+            gradesSection.appendChild(noGradesItem);
+            return;
+        }
+
+        // Create a map to group marks by classDescription
+        const groupedMarks = {};
+        querySnapshot.forEach((doc) => {
+            const markData = doc.data();
+            const classDescription = markData.classDescription;
+
+            // Initialize the classDescription key if it doesn't exist
+            if (!groupedMarks[classDescription]) {
+                groupedMarks[classDescription] = {};
+            }
+
+            // Assign the marks to their respective test types
+            groupedMarks[classDescription][markData.testType] = markData.marks;
+        });
+
+        // Create table
+        const table = document.createElement('table');
+        table.style.width = '100%'; // Set width to 100%
+        table.style.borderCollapse = 'collapse'; // Collapse borders
+
+        // Create table header
+        const headerRow = document.createElement('tr');
+        const classHeader = document.createElement('th');
+        classHeader.textContent = 'Class Description';
+        headerRow.appendChild(classHeader);
+
+        // Create dynamic headers for each testType
+        const testTypes = new Set();
+        Object.values(groupedMarks).forEach((marks) => {
+            Object.keys(marks).forEach((testType) => {
+                testTypes.add(testType);
+            });
+        });
+
+        testTypes.forEach((testType) => {
+            const marksHeader = document.createElement('th');
+            marksHeader.textContent = testType; // Use testType as the header
+            headerRow.appendChild(marksHeader);
+        });
+
+        table.appendChild(headerRow);
+
+        // Add grouped marks to the table
+        Object.entries(groupedMarks).forEach(([classDescription, marks]) => {
+            const row = document.createElement('tr');
+
+            const classCell = document.createElement('td');
+            classCell.textContent = classDescription;
+            row.appendChild(classCell);
+
+            // Add cells for each testType
+            testTypes.forEach((testType) => {
+                const marksCell = document.createElement('td');
+                marksCell.textContent = marks[testType] || 'N/A'; // Display 'N/A' if no mark exists
+                row.appendChild(marksCell);
+            });
+
+            table.appendChild(row);
+        });
+
+        gradesSection.appendChild(table);
+    } catch (error) {
+        console.error('Error fetching student marks:', error);
+    }
+}
+
+// Call the function when the document is ready
+document.addEventListener('DOMContentLoaded', () => {
+    fetchStudentMarks();
+});
+
+//-----------------------------marks section end -------------------------//
+//----------------------notifications function ---------------------------//
+async function displayNotificationsForStudent() {
+    const studentUid = localStorage.getItem('studentUid'); // Retrieve student UID from local storage
+    if (!studentUid) {
+        console.error("No student UID found in local storage.");
+        alert("Please log in as a student to view notifications.");
+        return; // Exit if no student UID is found
+    }
+
+    // Introduce a delay of 1 second (1000 milliseconds)
+    await new Promise(resolve => setTimeout(resolve, 4000));
+
+    const classesCollectionRef = collection(firestore, `classesForTeachers`);
+
+    try {
+        const classesSnapshot = await getDocs(classesCollectionRef);
+        const notificationsSection = document.getElementById("notifications");
+        notificationsSection.innerHTML = '<h2>Notifications</h2><p>View important notifications from your teachers.</p>'; // Clear previous content
+
+        if (classesSnapshot.empty) {
+            notificationsSection.innerHTML += '<p>No classes found.</p>'; // Handle no classes case
+            return;
+        }
+
+        let hasNotifications = false; // Track if any notifications are found
+
+       // Loop through each class
+for (const classDoc of classesSnapshot.docs) {
+    const classData = classDoc.data();
+    const classId = classDoc.id;
+
+    // Check if the student UID is in the enrolledStudents array
+    if (classData.enrolledStudents && classData.enrolledStudents.includes(studentUid)) {
+        hasNotifications = true; // Mark that we found at least one class
+
+        // Fetch notifications for the current class
+        const notificationsCollectionRef = collection(firestore, `classesForTeachers/${classId}/notifications`);
+        const notificationsSnapshot = await getDocs(notificationsCollectionRef);
+
+        if (notificationsSnapshot.empty) {
+            notificationsSection.innerHTML += `<h3>${classData.name}: No notifications found.</h3>`; // Handle no notifications case
+        } else {
+            notificationsSection.innerHTML += `<h3>${classData.name}:</h3>`; // Class header
+
+            for (const notificationDoc of notificationsSnapshot.docs) {
+                const notificationData = notificationDoc.data();
+                const teacherEmail = notificationData.teacherEmail; // Get the teacher's email
+                const expiration = notificationData.expiration ? notificationData.expiration.toDate() : null; // Get expiration date
+
+                // Format expiration date if it exists
+                let formattedExpiration = "";
+                if (expiration) {
+                    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                    formattedExpiration = ` (Expires: ${expiration.toLocaleString(undefined, options)})`;
+                }
+
+                // Check if teacherEmail is defined
+                if (teacherEmail) {
+                    // Fetch teacher's details using the email
+                    const teacherRef = query(collection(firestore, 'teachers'), where('email', '==', teacherEmail));
+                    const teacherSnapshot = await getDocs(teacherRef);
+
+                    let teacherName = "Unknown Teacher"; // Default if not found
+                    if (!teacherSnapshot.empty) {
+                        const teacherData = teacherSnapshot.docs[0].data();
+                        teacherName = `${teacherData.firstName} ${teacherData.lastName}`; // Construct full name
+                    }
+
+                    // Use card layout for notifications
+                    notificationsSection.innerHTML += `
+                        <div class="notification-card">
+                            <div class="notification-title">${notificationData.message} <strong>from ${teacherName}</strong>${formattedExpiration}</div>
+                            <div class="notification-message">Additional details can go here.</div>
+                        </div>
+                    `;
+                } else {
+                    // Use card layout for notifications with missing teacher information
+                    notificationsSection.innerHTML += `
+                        <div class="notification-card">
+                            <div class="notification-title">${notificationData.message} <strong>(Teacher information not available)</strong>${formattedExpiration}</div>
+                            <div class="notification-message">Additional details can go here.</div>
+                        </div>
+                    `;
+                }
+            }
+        }
+    }
+}
+
+if (!hasNotifications) {
+    notificationsSection.innerHTML += '<p>No notifications for your classes.</p>'; // Handle case where no notifications were found
+}
+
+console.log("Notifications for student displayed.");
+
+    } catch (error) {
+        console.error("Error fetching notifications:", error);
+        alert("Failed to load notifications. Please check your connection and try again.");
+    }
+}
+
+// Call this function to display notifications for the student
+displayNotificationsForStudent();
+//--------------------------------Time table zone ----------------------//
+async function displayStudentTimeTable() {
+    const studentUid = localStorage.getItem('studentUid'); // Retrieve student UID from local storage
+    if (!studentUid) {
+        console.error("No student UID found in local storage.");
+        alert("Please log in as a student to view your timetable.");
+        return; // Exit if no student UID is found
+    }
+
+    try {
+        // Fetch student details using the student UID
+        const studentRef = doc(firestore, 'students', studentUid);
+        const studentSnapshot = await getDoc(studentRef);
+
+        if (!studentSnapshot.exists()) {
+            console.error("No student found with the given UID.");
+            alert("Student details not found.");
+            return;
+        }
+
+        const studentData = studentSnapshot.data();
+        const className = studentData.className; // Get the class name for the student
+
+        // Fetch timetable based on class name
+        const timetableRef = collection(firestore, 'classes'); // Ensure you're querying the right collection
+        const timetableQuery = query(timetableRef, where('className', '==', className));
+        const timetableSnapshot = await getDocs(timetableQuery);
+
+        const timetableSection = document.querySelector('.studentTimeTable');
+        timetableSection.innerHTML = ''; // Clear previous content
+
+        if (timetableSnapshot.empty) {
+            timetableSection.innerHTML = '<p>No timetable found for this class.</p>'; // Handle no timetable case
+            return;
+        }
+
+        // Start building the display
+        timetableSection.innerHTML += `<h3>Timetable for ${className}</h3>`;
+        
+        // Define the order of days starting from Monday
+        const daysOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+        // Create a div to hold each day's timetable
+        daysOrder.forEach(day => {
+            let subjectsList = '';
+            let timesList = '';
+            let hasClasses = false;
+
+            timetableSnapshot.docs.forEach((doc) => {
+                const timetableData = doc.data().timeTable; // Access the timeTable field
+                if (timetableData[day]) {
+                    const subjects = timetableData[day].subjects || []; // Get subjects array
+                    const times = timetableData[day].times || []; // Get times array
+
+                    // Check if subjects exist
+                    if (subjects.length > 0) {
+                        subjectsList = subjects.join(', ');
+                        timesList = times.join(', ');
+                        hasClasses = true;
+                    }
+                }
+            });
+
+            // Display each day with its subjects and times
+            timetableSection.innerHTML += `
+                <div class="day">
+                    <h4>${day}</h4>
+                    <p>${hasClasses ? subjectsList : 'No classes'}</p>
+                    <p>${hasClasses ? timesList : ''}</p>
+                </div>`;
+        });
+
+        console.log("Timetable displayed successfully.");
+    } catch (error) {
+        console.error("Error fetching timetable:", error);
+        alert("Failed to load timetable. Please check your connection and try again.");
+    }
+}
+
+// Call this function to display the student's timetable
+displayStudentTimeTable();
+
+
+  </script>
+</body>
+</html>

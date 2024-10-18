@@ -1,0 +1,1569 @@
+<!--/*
+Author:Lihawu Tech;
+License:ISC License
+*/-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="About Us,ContactUs,Gallary" />
+
+    <title>School Website</title>
+    <link rel="icon" href="images/OOP.png" />
+    <link rel="stylesheet" href="../dist/css/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/animation.css" />
+
+ <style>
+.spinner {
+    border: 8px solid rgba(32, 228, 14, 0.658); /* Light border */
+    border-top: 8px solid #ffffff; /* Blue border */
+    border-radius: 50%; /* Circle */
+    width: 50px; /* Size of the spinner */
+    height: 50px; /* Size of the spinner */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#subjects-grid {
+    /* Optional: Control item width and responsiveness */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Each item will be at least 200px wide */
+}
+
+  
+ </style>
+</head>
+
+<body class="bg-white min-h-screen">
+    <!-- Unveiling Overlay -->
+    <div id="overlay" class="overlay unveil">
+        <img src="/src/images/OOP.png" alt="School Badge" class="overlay-badge" data-editable />
+    </div>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" ></div>
+
+
+    <!--login popup-->
+    <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="popup-content bg-white p-8 rounded-lg shadow-lg max-w-sm w-full" style="
+          background-color: rgba(8, 16, 246, 0.23);
+          backdrop-filter: blur(45px);
+        ">
+            <h2 class="text-2xl font-bold mb-4 slide-in-left">Login</h2>
+            <form id="login-form">
+                <div class="mb-4 fade-in ">
+                    <label for="login-email" class="block text-black">Email</label>
+                    <input type="email" id="login-email" name="email" class="w-full p-3  border-gray-700 rounded"
+                        required />
+                </div>
+                <div class="mb-4 fade-in-on-scroll">
+                    <label for="login-userid" class="block text-black">User ID</label>
+                    <input type="password" id="login-userid" name="userid" class="w-full p-3  border-gray-700 rounded"
+                        required />
+                </div>
+                <button type="subISC" class="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-500 slide-in-right"
+                    title="subISC">
+                    Sign In
+                </button>
+                <button type="button" id="close-popup" title="close popup"
+                    class="mt-4 bg-red-600 text-white py-2 px-4 rounded hover:bg-gray-500 slide-in-left">
+                    Close
+                </button>
+
+                <div id="loading-spinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+                    <div class="spinner"></div>
+                </div>
+ 
+            </form>
+        </div>
+    </div>
+    <!-- Registration Popup -->
+    <div id="registration-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center zoom-in"
+        style="overflow-y: auto; -ms-overflow-style: none;backdrop-filter: blur(8px)">
+
+        <div class="popup-content bg-white p-4 rounded-lg shadow-lg max-w-lg w-full slide-in-right " style="
+          background-color: rgba(8, 16, 246, 0.83);backdrop-filter: blur(0px);
+
+          z-index: 4000;
+        ">
+            <h2 class="text-2xl font-bold mb- text-black zoom-in">
+                School Admission Form
+            </h2>
+            <form id="admissionForm" class="zoom-in">
+                <!-- Personal Information -->
+                <div class="form-section mb-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-in-right">
+                        <div>
+                            <label for="first_name" class="block text-gray-900 font-semibold mb-2">First Name</label>
+                            <input type="text" id="first_name" name="first_name"
+                                class="w-full border-gray-800 rounded-lg p-3" required />
+                        </div>
+                        <div>
+                            <label for="last_name" class="block text-gray-900 font-semibold mb-2">Last Name</label>
+                            <input type="last_name" id="last_name" name="last_name"
+                                class="w-full border-gray-700 rounded-lg p-3" required />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-in-right">
+                        <div>
+                            <label for="dob" class="block text-black mt-4">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" class="w-full p-3  border-gray-700 rounded"
+                                required />
+                        </div>
+                        <div>
+                            <label for="id" class="block text-black mt-4">ID Number</label>
+                            <input type="text" id="id" name="id" class="w-full p-3  border-gray-700 rounded" required />
+                        </div>
+                    </div>
+                    <label for="gender" class="block text-black mt-4 slide-in-right">Gender</label>
+                    <select id="gender" name="gender" class="w-full p-3  border-gray-700 rounded slide-in-right" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-in-right ">
+                    <div>
+                        <label for="email" class="block text-gray-900 font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full border-gray-700 rounded-lg p-3"
+                            required />
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-900 font-semibold mb-2 slide-in-right">Phone</label>
+                        <input type="tel" id="phone" name="phone" class="w-full border-gray-700 rounded-lg p-3"
+                            required />
+                    </div>
+                </div>
+                <!-- Address Information -->
+                <div class="form-section mb-4 slide-in-right" >
+                    <label for="address" class="block text-black">Address</label>
+                    <input type="text" id="address" name="address" class="w-full p-3  border-gray-700 rounded"
+                        required></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-in-right">
+                    <div>
+                        <label for="previous_school" class="block text-gray-900 font-semibold mb-2">Previous
+                            School</label>
+                        <input type="text" id="previous_school" name="previous_school"
+                            class="w-full border-gray-700 rounded-lg p-3" required />
+                    </div>
+                    <div>
+                        <label for="grade" class="block text-gray-900 font-semibold mb-2">Grade</label>
+                        <select id="grade" required>
+                            <option value="">Select Grade</option>
+                            <!-- Options will be populated here from Firestore -->
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-in-right">
+                    <div>
+                        <label for="results" class="block text-gray-900 font-semibold mb-2">Results</label>
+                        <input type="file" id="results" name="results" class="w-full border-gray-700 rounded-lg p-3"
+                            accept=".pdf,.jpg,.jpeg,.png" required />
+                    </div>
+                    <div>
+                        <label for="certificate" class="block text-gray-700 font-semibold mb-2">Upload
+                            Certificate(pdf)</label>
+                        <input type="file" id="certificate" name="certificate"
+                            class="w-full border-gray-700 rounded-lg p-3" accept=".pdf" required />
+                    </div>
+                </div>
+
+                <!-- SubISC Button -->
+                <button type="subISC" class="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-500 slide-in-right" title="subISC">
+                    Register</button>
+                <button type="button" id="close-registration-popup" title="close form"
+                    class="mt-4 bg-red-600 text-white py-2 px-4 rounded hover:bg-gray-500 slide-in-left">
+                    Close
+                </button>
+                <div id="loading-spinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+                    <div class="spinner"></div>
+                </div>
+                
+            </form>
+        </div>
+        
+   
+   <div class="spinner-border animate-spin inline-block"></div>
+</div>
+</div>
+    <script type="module">
+        // Import Firebase dependencies
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1biSer_PoTi1jOPQLr8hMJEo8lzcJDaM",
+            authDomain: "school-management-1dac2.firebaseapp.com",
+            projectId: "school-management-1dac2",
+            storageBucket: "school-management-1dac2.appspot.com",
+            messagingSenderId: "545480440389",
+            appId: "1:545480440389:web:84f127bb00c44a473ac12c",
+            measurementId: "G-LELWKCKHN7",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const firestore = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            console.log("DOM fully loaded and parsed");
+
+            const signInButton = document.querySelector("#login-button");
+            const signInButtonMobile = document.querySelector("#edit-btn");
+            const registerButton = document.querySelector("#register-button");
+            const loginPopup = document.getElementById("login-popup");
+            const registrationPopup = document.getElementById("registration-popup");
+            const closePopupButton = document.getElementById("close-popup");
+            const closeRegistrationPopupButton = document.getElementById("close-registration-popup");
+
+            console.log({ signInButton, signInButtonMobile, registerButton, loginPopup, registrationPopup, closePopupButton, closeRegistrationPopupButton });
+
+            // Show login popup
+            if (signInButton || signInButtonMobile) {
+                signInButton?.addEventListener("click", function () {
+                    console.log("Sign-in button clicked");
+                    if (loginPopup) {
+                        loginPopup.style.display = "flex";
+                    }
+                });
+            }
+
+            // Show registration popup
+            if (registerButton) {
+                registerButton.addEventListener("click", function () {
+                    console.log("Register button clicked");
+                    if (registrationPopup) {
+                        registrationPopup.style.display = "flex";
+                    }
+                });
+            }
+
+            // Close login popup
+            if (closePopupButton) {
+                closePopupButton.addEventListener("click", function () {
+                    console.log("Close popup button clicked");
+                    if (loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                });
+            }
+
+            // Close registration popup
+            if (closeRegistrationPopupButton) {
+                closeRegistrationPopupButton.addEventListener("click", function () {
+                    console.log("Close registration popup button clicked");
+                    if (registrationPopup) {
+                        registrationPopup.style.display = "none";
+                    }
+                });
+            }
+
+      // Sign-in functionality
+if (loginPopup) {
+    document.getElementById("login-form")?.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        
+        // Show spinner immediately when the sign-in button is clicked
+        const loadingSpinner = document.getElementById("loading-spinner");
+        loadingSpinner.style.display = "block";
+
+        const email = document.getElementById("login-email").value;
+        const userId = parseInt(document.getElementById("login-userid").value, 10); // Convert to number
+
+        console.log(`Attempting sign-in with email: ${email} and userID: ${userId}`);
+
+        try {
+            // Query for users with matching email
+            const userQueryRef = collection(firestore, "users");
+            const emailQuery = query(userQueryRef, where("email", "==", email));
+
+            const emailSnapshot = await getDocs(emailQuery);
+
+            console.log(`Email query snapshot: ${emailSnapshot.size} documents found.`);
+
+            // Check if the email exists
+            if (emailSnapshot.empty) {
+                alert("Email not found. Please check your email and try again.");
+                return;
+            }
+
+            // If the email exists, check for userID
+            const userIdSnapshot = await getDocs(query(userQueryRef, where("userID", "==", userId)));
+
+            console.log(`UserID query snapshot: ${userIdSnapshot.size} documents found.`);
+
+            // Verify if the userID matches the found email
+            let userFound = false;
+            for (const emailDoc of emailSnapshot.docs) {
+                const userData = emailDoc.data();
+
+                // Check if userID matches
+                if (userData.userId === userId) {
+                    userFound = true; // Set the flag to true if a match is found
+
+                    // Store the email in local storage
+                    localStorage.setItem("userEmail", email);
+
+                    document.getElementById("login-form")?.reset();
+                    // Check user type and redirect accordingly
+                    if (userData.userType === "admin") {
+                        window.location.href = "./admin.html";
+                    } else if (userData.userType === "teacher") {
+                        window.location.href = "./teacher.html";
+                    } else if (userData.userType === "student") {
+                        window.location.href = "./student.html";
+                    } else {
+                        alert("Unknown user type.");
+                    }
+                    return;
+                }
+            }
+
+            // If userID does not match any of the found users with the email
+            if (!userFound) {
+                alert("Invalid user ID. Please check your user ID and try again.");
+            }
+        } catch (error) {
+            console.error("Error during sign-in:", error);
+            alert("Sign-in failed. Please try again.");
+        } finally {
+            // Hide spinner
+            loadingSpinner.style.display = "none";
+        }
+    });
+}
+
+
+   // Form submission handler
+document.getElementById("admissionForm")?.addEventListener("submit", submitForm);
+
+async function submitForm(e) {
+    e.preventDefault();
+
+    // Show spinner
+    document.getElementById("loading-spinner").style.display = "block";
+
+    const idString = getInputVal("id");
+
+    // Validate ID to ensure it is exactly 13 digits
+    if (!/^\d{13}$/.test(idString)) {
+        alert("ID must be exactly 13 digits long.");
+        document.getElementById("loading-spinner").style.display = "none"; // Hide spinner
+        return; // Exit the function
+    }
+
+    const id = Number(idString);
+    const email = getInputVal("email");
+
+    try {
+        // Check if a user with the same email or ID exists in 'students' or 'applications' collections
+        const userExists = await checkUserExists(email);
+
+        if (userExists) {
+            alert("A user with the same email already exists.");
+            document.getElementById("loading-spinner").style.display = "none"; // Hide spinner
+            return; // Exit the function
+        }
+
+        const firstName = getInputVal("first_name");
+        const lastName = getInputVal("last_name");
+        const dob = getInputVal("dob");
+        const gender = getInputVal("gender");
+        const phone = getInputVal("phone");
+        const address = getInputVal("address");
+        const previousSchool = getInputVal("previous_school");
+        const selectedGrade = getSelectedGrade(); // Get the selected grade
+        const results = document.getElementById("results").files[0];
+        const certificate = document.getElementById("certificate").files[0];
+
+        // Upload files to Firebase Storage and get the URLs
+        const resultsURL = await uploadFile(results, "results");
+        const certificateURL = await uploadFile(certificate, "certificate");
+
+        // Ensure classID is an integer
+        const classID = parseInt(selectedGrade.classID, 10);
+
+        // Add new application document to Firestore
+        await addDoc(collection(firestore, "applications"), {
+            id: id,
+            firstName: firstName,
+            lastName: lastName,
+            dob: dob,
+            gender: gender,
+            email: email,
+            phone: phone,
+            address: address,
+            previousSchool: previousSchool,
+            className: selectedGrade.className, // Store className as it is
+            classID: classID, // Store classID as an integer
+            resultsURL: resultsURL,
+            certificateURL: certificateURL,
+            submittedAt: new Date(),
+        });
+
+        // Clear form
+        document.getElementById("admissionForm")?.reset();
+
+        // Show success message
+        alert("Form submitted successfully!");
+
+        // Close the popup/modal after the success alert
+        closePopup();
+
+    } catch (error) {
+        console.error("Error uploading files or saving application:", error);
+        alert("There was an error submitting the form. Please try again.");
+    } finally {
+        // Hide spinner
+        document.getElementById("loading-spinner").style.display = "none";
+    }
+}
+// Function to close the popup/modal
+function closePopup() {
+    const popup = document.getElementById("yourPopupID"); // Replace with your popup's ID
+    if (popup) {
+        popup.style.display = "none"; // Hide the popup if it's a custom implementation
+    }
+
+    // If using a Bootstrap modal, uncomment the next line:
+    // $('#yourModalID').modal('hide'); // Replace with your modal's ID
+}
+
+/// Function to check if a user with the same email already exists in students or applications collections
+async function checkUserExists(email) {
+    // Query to check if a student with the same email exists in the students collection
+    const studentsQuery = query(
+        collection(firestore, "students"),
+        where("email", "==", email)
+    );
+
+    // Query to check if a user with the same email exists in the applications collection
+    const applicationsQuery = query(
+        collection(firestore, "applications"),
+        where("email", "==", email)
+    );
+
+    // Fetch the results of both queries
+    const studentsSnapshot = await getDocs(studentsQuery);
+    const applicationsSnapshot = await getDocs(applicationsQuery);
+
+    // If there's a matching document in either collection, return true
+    return !studentsSnapshot.empty || !applicationsSnapshot.empty;
+}
+
+// Function to get selected grade
+function getSelectedGrade() {
+    const gradeSelect = document.getElementById("grade");
+    const selectedOption = gradeSelect.options[gradeSelect.selectedIndex];
+    return {
+        classID: selectedOption.value,
+        className: selectedOption.textContent
+    };
+}  // Function to get form values
+            function getInputVal(id) {
+                return document.getElementById(id)?.value || "";
+            }
+
+            // Upload file to Firebase Storage
+            async function uploadFile(file, folder) {
+                const fileRef = storageRef(storage, `${folder}/${Date.now()}_${file.name}`);
+                await uploadBytes(fileRef, file);
+                return getDownloadURL(fileRef);
+            }
+
+            // Fetch classes and populate the select dropdown
+            await populateGrades();
+        });
+
+        // Function to fetch classes and populate the select dropdown
+        async function populateGrades() {
+    try {
+        const classesQuery = query(collection(firestore, "classes"));
+        const classSnapshot = await getDocs(classesQuery);
+
+        const gradeSelect = document.getElementById("grade");
+
+        // Clear existing options except for the default
+        gradeSelect.innerHTML = '<option value="">Select Grade</option>';
+
+        // Iterate through the classes and add them to the select element
+        classSnapshot.forEach((doc) => {
+            const classData = doc.data();
+            const option = document.createElement("option");
+            option.value = classData.classID; // Set value to classID
+            option.textContent = classData.className; // Set text to className
+            gradeSelect.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error("Error fetching classes:", error);
+    }
+}
+
+</script>
+
+    <!-- Navigation -->
+    <nav class="bg-transparent text-white py-1 fixed w-full top-0 left-0 z-50 transition-transform duration-300"
+        id="navbar">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <a href="#" class="flex items-center space-x-3 slide-in-right" id="logo">
+                <img src="./images/OOP.png" alt="School Logo" id="logo-img"
+                    class="w-14 h-14 rounded-full border-4 border-blue-400 shadow-md" />
+                <span class="text-2xl font-bold text-blue-400 -z-10" style="z-index: 20;">school name</span>
+            </a>
+            <div class="hidden md:flex space-x-8 slide-in-left">
+                <a href="#" class="nav-link fade-in-up text-white hover:text-blue-400">Home</a>
+                <a href="#about" class="nav-link fade-in-up text-white hover:text-blue-400">About Us</a>
+                <a href="#services" class="nav-link fade-in-up text-white hover:text-blue-400">Services</a>
+                <a href="#events" class="nav-link fade-in-up text-white hover:text-blue-400 relative">Events</a>
+                <a href="#contact" class="nav-link fade-in-up text-white hover:text-blue-400">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden flex items-center text-blue-600 hover:text-blue-400">
+                <i class="fas fa-bars text-3xl"></i>
+            </button>
+            <!-- Login Button -->
+            <a href="#" id="login-button"
+                class="inline-block px-6 py-3 pl-5 border-2 border-transparent bg-blue-900 text-gold rounded-lg hover:bg-orange-400 hover:text-blue-900 transition duration-300 slide-in-right">Login</a>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden fixed top-16 left-0 w-full bg-gray-900 text-white transform -translate-y-full transition-transform duration-300">
+            <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+                <button id="close-mobile-menu" class="text-blue-600 hover:text-blue-400 z-50" style="z-index: 5000;">
+                    <i class="fas fa-times text-3xl" style="z-index: 5000;"></i>
+                </button>
+            </div>
+            <a href="#about" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-400">About Us</a>
+            <a href="#services" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-400">Services</a>
+            <a href="#events" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-400">Events</a>
+            <a href="#contact" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-400">Contact</a>
+        </div>
+    </nav>
+    <header class="hero-carousel mx-auto sm:px-6">
+        <div class="typing-container">
+            <p id="typing-text" class="typing-text text-5xl text-red" style="font-size: 400%; color: rgb(2, 15, 252)">
+            </p>
+        </div>
+        <img id="header-image1" alt="Slide 1" class="hero-slide active editable-image" />
+        <img id="header-image2" alt="Slide 2" class="hero-slide fade editable-image" />
+        <img id="header-image3" alt="Slide 3" class="hero-slide fade editable-image" />
+        <a href="#more-content" id="register-button" class="read-more-btn hover:bg-orange-400 ">Apply Now</a>
+        <button class="prev" id="prev-slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="next" id="next-slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </header>
+   <script type="module">
+        import { fetchFirstHeroData } from './firebase.js'; // Import function from your firebase.js file
+
+        // Function to update the hero images in the HTML
+        function displayHeroImages(heroData) {
+            if (heroData) {
+                document.getElementById('header-image1').src = heroData.image1 || '';  // Set the image src if available
+                document.getElementById('header-image2').src = heroData.image2 || '';
+                document.getElementById('header-image3').src = heroData.image3 || '';
+            } else {
+                console.error('No hero data available to display.');
+            }
+        }
+
+        // Fetch and display the first hero document's images
+        fetchFirstHeroData(displayHeroImages);
+    </script>
+
+    <!--about section-->
+    <section id="about" class="py-24 bg-white fade-in-on-scroll">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold text-gray-800 mb-4 fade-in">
+                    About Our School
+                </h2>
+                <p class="text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
+                    A place of academic excellence, where students grow and achieve
+                    their best.
+                </p>
+            </div>
+
+            <!-- Mission Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <h3 class="text-4xl font-bold text-gray-800 mb-6 fade-in">Our Mission</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        To provide a nurturing environment where students can excel
+                        academically, socially, and personally.
+                    </p>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <img id="about-img1"
+                        class="w-full h-80 object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105 zoom-in"
+                        src="./images/img.jpg" alt="Our Mission" data-editable class="editable-image" />
+                </div>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
+                <div>
+                    <img id="about-img2"
+                        class="w-full h-80 object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105 slide-in-left"
+                        src="./images/img1.jpg" data-editable alt="Our Vision" class="editable-image" />
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-6 fade-in">Our Vision</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        To be a premier institution that prepares students for a rapidly
+                        changing world, equipping them with the skills to thrive in any
+                        career path.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h3 class="text-4xl font-bold text-gray-800 mb-6 fade-in">Our Values</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        Integrity, respect, and a comISCment to lifelong learning are the
+                        core values that drive our community.
+                    </p>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <img id="about-img3"
+                        class="w-full h-80 object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105 zoom-in"
+                        src="./images/img2.jpg" alt="Our Values" data-editable class="editable-image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- subjects Section -->
+    <section id="subjects" class="py-20 bg-white zoom-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 zoom-in">Our Subjects</h2>
+                <p class="text-lg text-gray-600">
+                    Discover the range of subjects offered at our school. We provide a
+                    comprehensive education to prepare our students for the future.
+                </p>
+            </div>
+            <div id="subjects-grid-wrapper" class="overflow-x-auto no-scrollbar">
+                <div id="subjects-grid" class="grid grid-flow-col auto-cols-max gap-6 slide-in-right">
+                    <!-- Subjects will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        import { fetchSubjects } from './firebase.js'; // Import the fetchSubjects function
+
+        // Function to create a subject card
+        function createSubjectCard(subject) {
+            return `
+            <div class="bg-gray-100 p-6 rounded-lg shadow-lg min-w-[200px]">
+                <h3 class="text-2xl font-semibold mb-2">${subject.name}</h3>
+                <p class="text-gray-600">${subject.description}</p>
+                 <!--/*
+    Author:Lihawu Tech;
+    License:ISC License
+    */-->
+            </div>
+        `;
+        }
+
+        // Function to create a placeholder card
+        function createPlaceholderCard() {
+            return `
+            <div class="bg-gray-100 p-6 rounded-lg shadow-lg min-w-[200px]">
+                <h3 class="text-2xl font-semibold mb-2">No Subject Available</h3>
+                <p class="text-gray-600">Stay tuned for updates!</p>
+            </div>
+             <!--/*
+    Author:Lihawu Tech;
+    License:ISC License
+    */-->
+        `;
+        }
+
+        // Function to populate subjects in the grid
+        function populateSubjects(subjectsList) {
+            const subjectsGrid = document.getElementById('subjects-grid');
+            subjectsGrid.innerHTML = ''; // Clear the grid
+
+            const MIN_SUBJECTS = 4; // Minimum number of cards to display
+            let subjectCards = '';
+
+            // Add subject cards if available
+            if (subjectsList.length > 0) {
+                subjectsList.forEach(subject => {
+                    subjectCards += createSubjectCard(subject);
+                });
+
+                // Add placeholder cards if less than 4 subjects
+                for (let i = subjectsList.length; i < MIN_SUBJECTS; i++) {
+                    subjectCards += createPlaceholderCard();
+                }
+            } else {
+                // Add only placeholder cards if no subjects are available
+                for (let i = 0; i < MIN_SUBJECTS; i++) {
+                    subjectCards += createPlaceholderCard();
+                }
+            }
+
+            subjectsGrid.innerHTML = subjectCards; // Insert all cards into the grid
+        }
+
+        // Fetch and display subjects when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchSubjects(populateSubjects);
+        });
+    </script>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="py-20 bg-gray-100 zoom-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 fade-in">Our Impact in Numbers</h2>
+                <p class="text-lg text-gray-600">
+                    Explore the significant milestones we've achieved.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+                <!-- Statistic 1 -->
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center">
+                    <h3 class="text-6xl font-bold text-midnight-blue">150+</h3>
+                    <p class="text-gray-600 mt-2">Projects Completed</p>
+                </div>
+                <!-- Statistic 2 -->
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center fade-in-on-scroll">
+                    <h3 class="text-6xl font-bold text-midnight-blue">1200+</h3>
+                    <p class="text-gray-600 mt-2">Satisfied Clients</p>
+                </div>
+                <!-- Statistic 3 -->
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center fade-in-on-scroll">
+                    <h3 class="text-6xl font-bold text-midnight-blue">30+</h3>
+                    <p class="text-gray-600 mt-2">Awards Won</p>
+                </div>
+                <!-- Add more statistics here if needed -->
+            </div>
+        </div>
+    </section>
+
+      
+
+    <!-- Features Section -->
+    <section class="py-20 fade">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 zoom-in">Why Choose Us?</h2>
+                <p class="text-lg text-gray-600">
+                    Explore the unique features that make our school stand out.
+                </p>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/4 p-4">
+                    <div
+                        class="bg-white shadow-lg rounded-lg overflow-hidden h-full text-center p-6 hover:shadow-2xl transition-shadow duration-500 zoom-in">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-book-open fa-3x"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2 zoom-in">Quality Education</h3>
+                        <p class="text-gray-600">
+                            Our curriculum is designed to foster critical thinking and
+                            creativity.
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/4 p-4">
+                    <div
+                        class="bg-white shadow-lg rounded-lg overflow-hidden h-full text-center p-6 hover:shadow-2xl transition-shadow duration-500 zoom-in">
+                        <div class="text-green-600 mb-4">
+                            <i class="fas fa-chalkboard-teacher fa-3x"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2 slide-in-right">Expert Faculty</h3>
+                        <p class="text-gray-600">
+                            Our teachers are passionate and comISCted to student success.
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/4 p-4">
+                    <div
+                        class="bg-white shadow-lg rounded-lg overflow-hidden h-full text-center p-6 hover:shadow-2xl transition-shadow duration-500 zoom-in">
+                        <div class="text-red-600 mb-4">
+                            <i class="fas fa-apple-alt fa-3x"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2 slide-in-left">Healthy Environment</h3>
+                        <p class="text-gray-600">
+                            We promote well-being and a healthy lifestyle among our
+                            students.
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/4 p-4">
+                    <div
+                        class="bg-white shadow-lg rounded-lg overflow-hidden h-full text-center p-6 hover:shadow-2xl transition-shadow duration-500 zoom-in">
+                        <div class="text-purple-600 mb-4">
+                            <i class="fas fa-globe-americas fa-3x"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2 slide-in-right">Global Perspective</h3>
+                        <p class="text-gray-600">
+                            We prepare students to be global citizens in an interconnected
+                            world.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-white-200 fade-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 slide-down">Upcoming Events</h2>
+                <p class="text-lg text-gray-600">
+                    Stay updated with our latest events and activities.
+                </p>
+            </div>
+            <div class="flex flex-wrap zoom-in" id="events-container">
+                <!-- Events will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        import { fetchEvents } from "./firebase.js"; // Adjust the import path as needed
+
+        // Function to create an event card
+        function createEventCard(event) {
+            const { imageUrl, title, description, link } = event;
+            return `
+            <div class="w-full md:w-1/3 p-4">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img class="w-full h-56 object-cover" src="${imageUrl}" alt="${title}" />
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2">${title}</h3>
+                        <p class="text-gray-600">${description}</p>
+                        <a href="${link}" class="text-blue-600 hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        // Function to create a placeholder event card with a placeholder image
+        function createPlaceholderCard() {
+            return `
+            <div class="w-full md:w-1/3 p-4">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="w-full h-56 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500">Image Coming Soon</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2">More events coming soon</h3>
+                        <p class="text-gray-600">Stay tuned for upcoming events.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        // Function to update the Events Section with fetched events
+        function updateEventsSection(eventsList) {
+            const eventsContainer = document.getElementById("events-container");
+            const eventsLink = document.querySelector('a[href="#events"]');
+            const MIN_EVENTS = 3;
+
+            // Check if events exist and update the DOM
+            let eventsHtml = "";
+            if (eventsList.length > 0) {
+                eventsHtml = eventsList.map(createEventCard).join("");
+
+                // Add placeholder cards if less than 3 events
+                for (let i = eventsList.length; i < MIN_EVENTS; i++) {
+                    eventsHtml += createPlaceholderCard();
+                }
+            } else {
+                // If no events are available, show placeholders
+                for (let i = 0; i < MIN_EVENTS; i++) {
+                    eventsHtml += createPlaceholderCard();
+                }
+            }
+            eventsContainer.innerHTML = eventsHtml;
+
+            // Create a notification circle for the event count
+            const eventCountBadge = document.createElement("span");
+            eventCountBadge.innerText = eventsList.length;
+            eventCountBadge.classList.add("event-count-badge");
+
+            // Append the badge next to the "Events" link in the navbar
+            if (eventsList.length > 0) {
+                eventsLink.appendChild(eventCountBadge);
+            }
+        }
+
+        // Fetch and update events section
+        fetchEvents((eventsList) => {
+            updateEventsSection(eventsList);
+        });
+
+        // Style the notification circle (CSS)
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .event-count-badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 8px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-white-200 zoom-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 slide-down">Latest News</h2>
+                <p class="text-lg text-gray-600">
+                    Stay updated with our most recent news items.
+                </p>
+            </div>
+            <div class="relative">
+                <div class="flex overflow-x-scroll no-scrollbar zoom-in" id="newsCarousel">
+                    <!-- Dynamic news items will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        import { fetchNews } from "./firebase.js";
+    
+        // Function to create a news card
+        function createNewsCard(newsItem, index) {
+            return `
+            <div class="flex-shrink-0 w-full md:w-1/3 p-4 zoom-in">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img class="w-full h-56 object-cover" src="${newsItem.imageUrl || 'default_image.jpg'}" alt="${newsItem.title || 'News Image'}" />
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2">${newsItem.title || 'No Title'}</h3>
+                        <p class="text-gray-600" id="content-${index}">
+                            ${newsItem.content ? newsItem.content.substring(0, 100) : 'No content available'}...
+                            <span id="more-${index}" style="display:none">${newsItem.content ? newsItem.content.substring(100) : ''}</span>
+                        </p>
+                        <a href="javascript:void(0)" class="text-blue-600 hover:underline" onclick="toggleReadMore(${index})" id="readMore-${index}">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+    
+        // Function to create a placeholder news card
+        function createPlaceholderNewsCard() {
+            return `
+            <div class="flex-shrink-0 w-full md:w-1/3 p-4 zoom-in">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <div class="w-full h-56 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500">Image Coming Soon</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-2">More news coming soon</h3>
+                        <p class="text-gray-600">Stay tuned for our latest news updates.</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+    
+        // Function to display news items and add placeholders if necessary
+        function displayNews(newsItems) {
+            const newsCarousel = document.getElementById("newsCarousel");
+            const MIN_NEWS = 3; // Minimum number of cards to display
+            let newsHTML = "";
+    
+            if (newsItems.length > 0) {
+                newsItems.forEach((newsItem, index) => {
+                    newsHTML += createNewsCard(newsItem, index);
+                });
+    
+                // Add placeholders if less than MIN_NEWS items
+                for (let i = newsItems.length; i < MIN_NEWS; i++) {
+                    newsHTML += createPlaceholderNewsCard();
+                }
+            } else {
+                // If no news items, display only placeholder cards
+                for (let i = 0; i < MIN_NEWS; i++) {
+                    newsHTML += createPlaceholderNewsCard();
+                }
+            }
+    
+            newsCarousel.innerHTML = newsHTML;
+        }
+    
+        window.toggleReadMore = function (index) {
+            const moreText = document.getElementById(`more-${index}`);
+            const readMoreBtn = document.getElementById(`readMore-${index}`);
+    
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                readMoreBtn.innerText = "Read Less";
+            } else {
+                moreText.style.display = "none";
+                readMoreBtn.innerText = "Read More";
+            }
+        };
+    
+        // Fetch and display news items
+        fetchNews((newsItems) => {
+            console.log("Fetched news items:", newsItems); // Debugging log
+            displayNews(newsItems);
+        });
+    </script>
+    
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-100 fade">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-extrabold text-blue-900 mb-4">Our Gallery</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto fade">
+                    Discover the vibrant essence of our school community through the gallery below. Each moment captured
+                    tells a story of growth, learning, and fun.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 fade">
+                <div class="relative group zoom-in" id="uniform-gallery">
+                    <!-- Gallery items for uniform -->
+                </div>
+                <div class="relative group slide-in-left" id="premises-gallery">
+                    <!-- Gallery items for premises -->
+                </div>
+                <div class="relative group zoom-in" id="student-gallery">
+                    <!-- Gallery items for students -->
+                </div>
+                <div class="relative group slide-in-left" id="activities-gallery">
+                    <!-- Gallery items for activities -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        import { fetchGallery } from './firebase.js';
+
+        // Placeholder image and title for when there are no images in a gallery type
+        const placeholderImage = 'https://via.placeholder.com/300x200?text=No+Image+Available';
+        const placeholderTitle = 'No Image';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchGallery(galleryList => {
+                const gallerySections = {
+                    uniform: document.getElementById('uniform-gallery'),
+                    premises: document.getElementById('premises-gallery'),
+                    student: document.getElementById('student-gallery'),
+                    activities: document.getElementById('activities-gallery')
+                };
+
+                const galleryImages = {
+                    uniform: [],
+                    premises: [],
+                    student: [],
+                    activities: []
+                };
+
+                // Sort images into appropriate sections
+                galleryList.forEach(item => {
+                    const { imageUrl, title, type } = item;
+                    if (galleryImages[type]) {
+                        galleryImages[type].push({
+                            imageUrl,
+                            title
+                        });
+                    }
+                });
+                /*
+    Author:Lihawu Tech;
+    License:ISC License
+    */
+
+                // Loop through each gallery section and add images or placeholder
+                Object.keys(galleryImages).forEach(type => {
+                    const gallerySection = gallerySections[type];
+
+                    if (galleryImages[type].length === 0) {
+                        // Display placeholder if no images
+                        const placeholderItem = document.createElement('div');
+                        placeholderItem.classList.add(
+                            'relative',
+                            'group',
+                            'overflow-hidden',
+                            'rounded-lg',
+                            'shadow-lg',
+                            'transition-transform',
+                            'duration-300',
+                            'transform',
+                            'hover:scale-105',
+                            'hover:shadow-xl'
+                        );
+                        placeholderItem.innerHTML = `
+                        <img src="${placeholderImage}" alt="${placeholderTitle}" class="w-full h-60 object-cover rounded-lg pulse">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold px-4 py-2 bg-black bg-opacity-70 rounded-md">${placeholderTitle}</p>
+                        </div>
+                    `;
+                        gallerySection.appendChild(placeholderItem);
+                    } else {
+                        // Display the first image in each section
+                        galleryImages[type].forEach((image, index) => {
+                            const { imageUrl, title } = image;
+
+                            if (index === 0) {
+                                const galleryItem = document.createElement('div');
+                                galleryItem.classList.add(
+                                    'relative',
+                                    'group',
+                                    'overflow-hidden',
+                                    'rounded-lg',
+                                    'shadow-lg',
+                                    'transition-transform',
+                                    'duration-300',
+                                    'transform',
+                                    'hover:scale-105',
+                                    'hover:shadow-xl'
+                                );
+
+                                galleryItem.innerHTML = `
+                                <a href="${imageUrl}" data-lightbox="${type}-gallery" data-title="${title}">
+                                    <img src="${imageUrl}" alt="${title}" class="w-full h-60 object-cover rounded-lg pulse">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <p class="text-white text-lg font-semibold px-4 py-2 bg-black bg-opacity-70 rounded-md">${title}</p>
+                                    </div>
+                                </a>
+                            `;
+
+                                gallerySection.appendChild(galleryItem);
+                            }
+
+                            // Add additional images to lightbox (not displayed initially)
+                            if (index > 0) {
+                                const lightboxLink = document.createElement('a');
+                                lightboxLink.href = imageUrl;
+                                lightboxLink.setAttribute('data-lightbox', `${type}-gallery`);
+                                lightboxLink.setAttribute('data-title', title);
+                                document.body.appendChild(lightboxLink);
+                            }
+                        });
+                    }
+                });
+            }).catch(error => {
+                console.error('Error fetching gallery data:', error);
+            });
+        });
+    </script>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 pulse">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 fade-in-on-scroll">Contact Us</h2>
+                <p class="text-lg text-gray-600">
+                    Have any questions or need assistance? Get in touch with us through
+                    the contact form below or use the contact details provided.
+                </p>
+            </div>
+            <div class="flex flex-col lg:flex-row lg:space-x-12 slide-in-left">
+                <!-- Contact Form -->
+                <div class="lg:w-2/3 bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-6 fade">Send Us a Message</h3>
+                    <form action="#" method="post" class="space-y-6 ">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name"
+                                    class="block text-gray-700 font-semibold mb-2 slide-in-left">Name</label>
+                                <input type="text" id="name" name="name" class="w-full border-gray-300 rounded-lg p-3"
+                                    required />
+                            </div>
+                            <div>
+                                <label for="email"
+                                    class="block text-gray-700 font-semibold mb-2 slide-in-right">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full border-gray-300 rounded-lg p-3" required />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message"
+                                class="block text-gray-700 font-semibold mb-2 slide-in-left">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full border-gray-300 rounded-lg p-3"
+                                required></textarea>
+                        </div>
+                        <button type="subISC"
+                            class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 slide-in-left">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <!-- Contact Details -->
+                <div class="lg:w-1/3 bg-white p-8 rounded-lg shadow-lg mt-8 lg:mt-0 pulse">
+                    <h3 class="text-2xl font-semibold mb-6 fade">Contact Details</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 waves" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h14a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5a1 1 0 011-1z"></path>
+                            </svg>
+                            <span class="text-gray-600 slide-in-left">RSTP,Phocweni,Matsapha,Eswatini</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 waves" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 10h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2a1 1 0 011-1z"></path>
+                            </svg>
+                            <span class="text-gray-600 slide-in-right">+26876818841</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-600 mr-3 waves" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7h18v14H3V7z"></path>
+                            </svg>
+                            <span class="text-gray-600 fade-in-on-scroll">Lihawu95@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!--/*
+    Author:Lihawu Tech;
+    License:ISC License
+    */-->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- About Section -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">About Us</h3>
+                    <p class="text-gray-300 mb-4">
+                        We are dedicated to providing quality education and fostering a
+                        positive learning environment. Learn more about our mission and
+                        values.
+                    </p>
+                    <a href="#" class="text-blue-400 hover:underline">Learn More</a>
+                </div>
+                <!-- Links Section -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Home</a></li>
+                        <li><a href="#about" class="hover:underline">About Us</a></li>
+                        <li><a href="#news" class="hover:underline">News</a></li>
+                        <li><a href="#contact" class="hover:underline">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Section -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-400 mr-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 15a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v8z"></path>
+                            </svg>
+                            <span>RSTP,Phocweni,Matsapha,Eswatini</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-400 mr-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13h14a1 1 0 011 1v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-1a1 1 0 011-1z"></path>
+                            </svg>
+                            <span>+268 7681 8841</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-blue-400 mr-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l9 9 9-9-9-9-9 9z"></path>
+                            </svg>
+                            <span>Lihawu95@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-6 mt-8">
+                <a href="#" class="text-blue-400 hover:text-blue-500">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1zM6 5h12v14H6V5zm6 2a2 2 0 100 4 2 2 0 000-4zm-6 6h12v2H6v-2z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="text-blue-400 hover:text-blue-500">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2.5C6.486 2.5 2 6.986 2 12.5s4.486 10 10 10 10-4.486 10-10S17.514 2.5 12 2.5zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm0-14a6 6 0 100 12 6 6 0 000-12zm0 10a4 4 0 110-8 4 4 0 010 8z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="text-blue-400 hover:text-blue-500">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20.707 4.293a1 1 0 00-1.414 0L16 6.586l-2.293-2.293a1 1 0 00-1.414 1.414L14.586 8l-2.293 2.293a1 1 0 001.414 1.414L16 9.414l2.293 2.293a1 1 0 001.414-1.414L17.414 8l2.293-2.293a1 1 0 000-1.414zM12 22a10 10 0 1110-10A10 10 0 0112 22z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <!-- Footer Bottom
+             *****dont remove this part of the footer*******
+            ////// Linced under ISC////////////////////////// 
+             -->
+
+
+            <div class="text-center mt-8">
+                <p class="text-gray-300 text-sm">
+                    &copy; 2024 School Website. All rights reserved. Designed by
+                    <a href="#" style="text-decoration: underline" id="copy"></a>
+                </p>
+            </div>
+              <!-- Footer Bottom
+             dont remove this part of the footer -->
+              <!--/*
+    Author:Lihawu Tech;
+    License:ISC License
+    */-->
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <script type="module" src="./firebase.js"></script>
+    <script src="script/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Mobile menu elements
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const closeMobileMenuButton = document.getElementById("close-mobile-menu");
+            const overlay = document.getElementById("overlay");
+
+            
+            // Function to toggle mobile menu and overlay visibility
+            function toggleMenu() {
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle("active");
+                }
+                if (overlay) {
+                    overlay.classList.toggle("active");
+                }
+            }
+/*
+Author:Lihawu Tech;
+License:ISC License
+*/
+const copy = `<h1 class="text-blue-400">&star;Lihawu Tech<!--/*
+Author:Lihawu Tech;
+License:ISC License
+*/-->&star;
+</h1>`;
+            const copyID = document.getElementById('copy');
+
+            copyID.innerHTML= copy;/*
+            Author:Lihawu Tech;
+            License:ISC License
+            */
+            if (overlay) {
+                overlay.addEventListener("animationend", function () {
+                    overlay.style.display = "none";
+                });
+            }
+
+            // Event listeners for opening and closing the mobile menu
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener("click", toggleMenu);
+            }
+
+            if (closeMobileMenuButton) {
+                closeMobileMenuButton.addEventListener("click", toggleMenu);
+            }
+
+            if (overlay) {
+                overlay.addEventListener("click", function () {
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove("active");
+                    }
+                    overlay.classList.remove("active");
+                });
+            }
+
+            // Handle scroll events to change navbar style
+            function handleScroll() {
+                const nav = document.querySelector("nav");
+                const heroSection = document.querySelector(".hero-carousel");
+                if (nav) {
+                    nav.classList.toggle("bg-white", window.scrollY > 50);
+                    nav.classList.toggle("shadow-xl", window.scrollY > 50);
+                }
+                if (heroSection) {
+                    heroSection.classList.toggle('fold', window.scrollY > 100);
+                }
+            }
+            window.addEventListener("scroll", handleScroll);
+
+            // JavaScript for Carousel
+            let slideIndex = 0;
+            const slides = document.querySelectorAll(".hero-carousel img");
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("fade", i !== index);
+                });
+            }
+
+            const nextSlideButton = document.getElementById("next-slide");
+            const prevSlideButton = document.getElementById("prev-slide");
+
+            if (nextSlideButton) {
+                nextSlideButton.addEventListener("click", () => {
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    showSlide(slideIndex);
+                });
+            }
+
+            if (prevSlideButton) {
+                prevSlideButton.addEventListener("click", () => {
+                    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+                    showSlide(slideIndex);
+                });
+            }
+
+            // Automatically change slides every 5 seconds
+            setInterval(() => {
+                slideIndex = (slideIndex + 1) % slides.length;
+                showSlide(slideIndex);
+            }, 5000);
+
+            // Show first slide initially
+            showSlide(slideIndex);
+
+            // Function to handle intersection
+            function handleIntersection(entries) {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                    }
+                });
+            }
+
+            // Create an IntersectionObserver instance
+            const observer = new IntersectionObserver(handleIntersection, {
+                threshold: 0.2,
+            });
+
+            // Target sections for observation
+            const sections = document.querySelectorAll('.fade-in-on-scroll, .slide-in-on-scroll');
+            sections.forEach(section => observer.observe(section));
+
+            // Smooth scroll for "Read More" button
+            const readMoreBtn = document.querySelector(".read-more-btn");
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth",
+                    });
+                });
+            }
+
+            // Typing text animation
+            const typingText = document.getElementById("typing-text");
+            const typingDelay = 100;
+            const textArray = [
+                "Welcome to Our School",
+                "Join us today",
+                "Explore the world with us",
+            ];
+            let textIndex = 0;
+            let letterIndex = 0;
+
+            function typeText() {
+                if (letterIndex < textArray[textIndex].length) {
+                    typingText.textContent += textArray[textIndex][letterIndex];
+                    letterIndex++;
+                    setTimeout(typeText, typingDelay);
+                } else {
+                    setTimeout(eraseText, 1500);
+                }
+            }
+
+            function eraseText() {
+                if (letterIndex > 0) {
+                    typingText.textContent = typingText.textContent.slice(0, -1);
+                    letterIndex--;
+                    setTimeout(eraseText, typingDelay);
+                } else {
+                    textIndex = (textIndex + 1) % textArray.length;
+                    setTimeout(typeText, typingDelay);
+                }
+            }
+
+            if (typingText) {
+                typeText();
+            }
+
+            // Close mobile menu when a link is clicked
+            const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener("click", toggleMenu);
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            });
+
+            const sections = document.querySelectorAll('.fade-in-on-scroll, .slide-in-on-scroll');
+            sections.forEach(section => observer.observe(section));
+        });
+
+    </script>
+</body>
+
+</html>
